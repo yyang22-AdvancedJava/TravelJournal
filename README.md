@@ -7,5 +7,5 @@ The problem is that travel memories are more than just images; they are tied to 
 
 
 ### Design
-[User Stories]
+- [User Stories](DesignDocuments/userStories.md)
 
