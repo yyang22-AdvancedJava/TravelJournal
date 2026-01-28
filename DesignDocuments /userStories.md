@@ -1,7 +1,6 @@
 # User Stories
 ## MVP User Stories
-### User Authentication & Account Management
-  
+### User Authentication & Account Management  
 __Sign up *__\
 As a new user I want to create an account so that I can add or edit travel journals.
 
@@ -49,10 +48,9 @@ As an admin user, I want to be able to view all created journals to ensure the A
 
 <br>
 <br>
+<br>
 
 ## Non-MVP User Stories
-이 기능들은 이번 학기(또는 개발 초기)에는 구현하지 않지만, 앱의 완성도를 높이기 위한 미래의 계획입니다.
-
 ### Personalization
 __Mark Cities as Favorites *__\
 As a user, I want to mark specific cities as favorites so that I can quickly access weather updates and start new entries for my favorite destinations.
