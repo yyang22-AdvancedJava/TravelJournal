@@ -47,9 +47,33 @@ As a user, I want to be able to delete a journal entry so that I can remove unwa
 __Admin View All Entries *__\
 As an admin user, I want to be able to view all created journals to ensure the API data is being fetched and stored correctly across the database.
 
-__Admin Edit Journal *__\
-As an admin user, I want to be able to edit any journal entry to correct data errors or API sync issues.
+<br>
+<br>
 
-__Admin Delete Journal *__\
-As an admin user, I want to be able to delete any journal entry that contains inappropriate content or data errors to maintain the quality of the service.
+## Non-MVP User Stories
+이 기능들은 이번 학기(또는 개발 초기)에는 구현하지 않지만, 앱의 완성도를 높이기 위한 미래의 계획입니다.
 
+### Personalization
+__Mark Cities as Favorites *__\
+As a user, I want to mark specific cities as favorites so that I can quickly access weather updates and start new entries for my favorite destinations.
+
+__Customize Weather Themes *__\
+As a user, I want to set my own preferred background colors or styles for specific weather conditions so that the app reflects my personal aesthetic and emotional connection to the weather.
+
+<br>
+
+### Mobile & Mapping
+__Use Current Location *__\
+As a user, I want the app to use my current GPS location so that it can automatically fetch the weather for where I am right now without me having to search.
+
+__Open Location in Maps *__\
+As a user, I want to click the city name in my journal and open it in Google Maps so that I can see exactly where I wrote that entry.
+
+<br>
+
+### General
+__View Journal Statistics *__\
+As a user, I want to see a summary of which weather conditions I experienced most during my travels so that I can track my travel patterns and moods.
+
+__Export Journal as Image *__\
+As a user, I want to save my color-adjusted journal as an image file so that I can keep a copy in my phone gallery or print it.
