@@ -1,5 +1,5 @@
 # Project Plan
-##Week 2
+## Week 2
 - [ ] Create project repository on GitHub
 - [ ] Create project structure in IntelliJ and push
 - [ ] Add link to list of indie projects in student repo.
