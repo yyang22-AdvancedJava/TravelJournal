@@ -6,6 +6,8 @@
 - [ ] Complete Problem Statement
 - [ ] Weekly reflection/time log
 
+<br>
+
 ## Week 3
 - [ ] Research possible Web Services/APIs to use
 - [ ] List technologies, versions and how they will be used
@@ -15,6 +17,8 @@
 - [ ] Design screens - make sure all MVP user stories are covered
 - [ ] Triple-check for Checkpoint 1
 - [ ] Update journal/time log/reflection
+
+<br>
 
 ## Week 4 - Class topic is Hibernate
 Focus: City Search & Journal Entity Implementation
@@ -32,6 +36,8 @@ Focus: City Search & Journal Entity Implementation
 - [ ] Create controller to manage the work of fetching weather data
 - [ ] Update weekly reflection
 
+<br>
+
 ## Week 7
 Checkpoint 2 Due: Database, Hibernate DAO, Unit Testing, Log4J
 
@@ -42,10 +48,14 @@ Checkpoint 2 Due: Database, Hibernate DAO, Unit Testing, Log4J
 - [ ] Deploy project to AWS
 - [ ] Add deployed link to indie project list in student repo
 
+<br>
+
 ## Week 9 (Start of the team project)
 Checkpoint 3 Due: AWS Deployment, JSP Data Display, Authentication
 
 - [ ] Double-check all checkpoint 3 items are complete and visible in GitHub.
+
+<br>
 
 ## Week 15
 - [ ] Implement Feedback from Week 14 review
@@ -54,6 +64,8 @@ Checkpoint 3 Due: AWS Deployment, JSP Data Display, Authentication
 - [ ] Finalize all documentation
 - [ ] Code quality check
 - [ ] Weekly journal entry
+
+<br>
 
 ## Week 16
 - [ ] Weekly journal entry
