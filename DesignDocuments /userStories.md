@@ -52,26 +52,30 @@ As an admin user, I want to be able to view all created journals to ensure the A
 
 ## Non-MVP User Stories
 ### Personalization
-__Mark Cities as Favorites *__\
+__Mark Cities as Favorites__\
 As a user, I want to mark specific cities as favorites so that I can quickly access weather updates and start new entries for my favorite destinations.
 
-__Customize Weather Themes *__\
+__Customize Weather Themes__\
 As a user, I want to set my own preferred background colors or styles for specific weather conditions so that the app reflects my personal aesthetic and emotional connection to the weather.
 
 <br>
 
 ### Mobile & Mapping
-__Use Current Location *__\
+__Use Current Location__\
 As a user, I want the app to use my current GPS location so that it can automatically fetch the weather for where I am right now without me having to search.
 
-__Open Location in Maps *__\
+__Open Location in Maps__\
 As a user, I want to click the city name in my journal and open it in Google Maps so that I can see exactly where I wrote that entry.
 
 <br>
 
 ### General
-__View Journal Statistics *__\
+__View Journal Statistics__\
 As a user, I want to see a summary of which weather conditions I experienced most during my travels so that I can track my travel patterns and moods.
 
-__Export Journal as Image *__\
+__Export Journal as Image__\
 As a user, I want to save my color-adjusted journal as an image file so that I can keep a copy in my phone gallery or print it.
+
+<br>
+
+*Denotes MVP
