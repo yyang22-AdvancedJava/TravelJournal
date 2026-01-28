@@ -9,3 +9,7 @@ The problem is that travel memories are more than just images; they are tied to 
 ### Design
 - [User Stories](https://github.com/yyang22-AdvancedJava/TravelJournal/blob/main/DesignDocuments%20/userStories.md)
 
+<br>
+
+### [Project Plan](https://github.com/yyang22-AdvancedJava/TravelJournal/blob/main/ProjectPlan.md)
+
