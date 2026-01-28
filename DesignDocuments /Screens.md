@@ -1,12 +1,12 @@
 # Screen Design
-## Main Page
+### Main Page
 
-## Add New Journal Page
+### Add New Journal Page
 
-##  View by Cities
+###  View by Cities
 
-## View by Weather
+### View by Weather
 
-## Sign In
+### Sign In
 
-## Sign Up
+### Sign Up
