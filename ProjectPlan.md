@@ -17,15 +17,16 @@
 - [ ] List technologies, versions, and how they will be used
 - [ ] Triple-check for Checkpoint 1
 - [ ] Update journal/time log/reflection
+- [x] First cut at database design (User, Journal tables)
+- [x] Create the dev version of the database
+- [x] Create Journal entity
+- [x] Create a class to perform CRUD on journal - JournalDao
 
 <br>
 
 ## Week 4 - Class topic is Hibernate
 Focus: City Search & Journal Entity Implementation
-- [ ] First cut at database design (User, Journal tables)
-- [ ] Create the dev version of the database
-- [ ] Create Journal entity
-- [ ] Create a class to perform CRUD on journal - JournalDao
+
 - [ ] Create the config files for the DB connection info (dev and test)
 - [ ] Create a test version of the database for unit testing
 - [ ] Create unit tests for the JournalDao
