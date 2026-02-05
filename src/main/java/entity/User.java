@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class to represent a user.
@@ -27,8 +28,8 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<Journal> journals = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.EAGER)
+    private List<Journal> journals = new ArrayList<>();
 
 
     /**
@@ -70,7 +71,7 @@ public class User {
      * Get journals
      * @return journals Journals
      */
-    public ArrayList<Journal> getJournals() {
+    public List<Journal> getJournals() {
         return journals;
     }
 
@@ -78,7 +79,7 @@ public class User {
      * Sets journals
      * @param journals Journals
      */
-    public void setJournals(ArrayList<Journal> journals) {
+    public void setJournals(List<Journal> journals) {
         this.journals = journals;
     }
 

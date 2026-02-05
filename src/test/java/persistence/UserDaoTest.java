@@ -1,5 +1,6 @@
 package persistence;
 
+import entity.Journal;
 import entity.User;
 
 import util.Database;
@@ -56,6 +57,31 @@ class UserDaoTest {
         userDao.delete(userDao.getById(2));
         assertNull(userDao.getById(2));
 
+    }
+
+    @Test
+    void deleteWithJournals() {
+        // create the userDao
+        userDao = new UserDao();
+
+        // get the user we want to delete that has 2 orders associated
+        User userToBeDeleted = userDao.getById(1);
+        List<Journal> orders = userToBeDeleted.getJournals();
+
+        // get the associated order numbers
+        int orderNumber1 = orders.get(0).getId();
+        int orderNumber2 = orders.get(1).getId();
+
+        // delte the user
+        userDao.delete(userToBeDeleted);
+        assertNull(userDao.getById(1));
+
+        // verify the user was deleted
+        JournalDao journalDao = new JournalDao();
+
+        // verify the orders were also deleted
+        assertNull(journalDao.getById(orderNumber1));
+        assertNull(journalDao.getById(orderNumber2));
     }
 
     @Test

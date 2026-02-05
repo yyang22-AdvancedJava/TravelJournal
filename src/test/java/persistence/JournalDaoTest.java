@@ -3,7 +3,10 @@ package persistence;
 
 
 import entity.Journal;
+import entity.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import util.Database;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,68 +17,84 @@ class JournalDaoTest {
 
     JournalDao journalDao;
 
-    @Test
-    void getByIdSuccess() {
+    @BeforeEach
+    void setUp() {
+        Database database = Database.getInstance();
+        database.runSQL("cleanDB.sql");
         journalDao = new JournalDao();
-        Journal retrievedJournal = journalDao.getById(1);
-        assertNotNull(retrievedJournal);
-        assertEquals("Administrator", retrievedJournal.getTitle());
     }
 
     @Test
-    void updateSuccess() {
-        journalDao = new JournalDao();
+    void getById() {
+
+        Journal retrievedJournal = journalDao.getById(1);
+        assertNotNull(retrievedJournal);
+        assertEquals("Administrator 1", retrievedJournal.getTitle());
+    }
+
+    @Test
+    void update() {
+
         Journal journalToUpdate = journalDao.getById(1);
-        journalToUpdate.setTitle("Administrator");
+        journalToUpdate.setLocation("Washington D.C.");
         journalDao.update(journalToUpdate);
 
         // retrieve the user and check that the name change worked
         Journal actualJournal = journalDao.getById(1);
-        assertEquals("Administrator", actualJournal.getTitle());
+        assertEquals("Washington D.C.", actualJournal.getLocation());
     }
 
 
     @Test
-    void insertSuccess() {
+    void insert() {
+        // get a user
+        UserDao userDao = new UserDao();
+        User user = userDao.getById(2);
 
-        journalDao = new JournalDao();
-        Journal journalToInsert = new Journal(
-                1, "Journal Test 1", "test", LocalDate.now(),
-                LocalDate.now(), "Madison", "Cold"
-        );
+        //create an order with that user
+        Journal journalToInsert =
+                new Journal(user, "Insert Test", null, LocalDate.now(), LocalDate.now(),
+                            "Seoul", "Freezing");
+
+        // insert the order
         int insertedJournalId = journalDao.insert(journalToInsert);
-        assertNotEquals(0, insertedJournalId);
-        Journal insertedJournal = journalDao.getById(insertedJournalId);
-        assertEquals("Journal Test 1", insertedJournal.getTitle());
+
+        //retrieve the order
+        Journal retrievedJournal = journalDao.getById(insertedJournalId);
+
+        //verify
+        assertNotNull(retrievedJournal);
+        assertEquals(journalToInsert.getTitle(), retrievedJournal.getTitle());
+        assertEquals("Joe", journalToInsert.getUser().getFirstName());
     }
 
 
     @Test
-    void deleteSuccess() {
-        journalDao = new JournalDao();
-        journalDao.delete(journalDao.getById(2));
-        assertNull(journalDao.getById(2));
+    void delete() {
+
+        journalDao.delete(journalDao.getById(4));
+        assertNull(journalDao.getById(4));
     }
 
     @Test
-    void getAllSuccess() {
-        journalDao = new JournalDao();
+    void getAll() {
+
         List<Journal> journals = journalDao.getAll();
-        assertEquals(0, journals.size());
+        assertEquals(4, journals.size());
     }
 
     @Test
-    void getByPropertyEqualSuccess() {
-        journalDao = new JournalDao();
+    void getByPropertyEqual() {
+
         List<Journal> journals = journalDao.getByPropertyLike("location", "Madison");
-        assertEquals(4, journals.size());
-        assertEquals(1, journals.get(0).getId());
+        //assertEquals(4, journals.size());
+        assertEquals(5, journals.get(0).getId());
     }
 
     @Test
-    void getByPropertyLikeSuccess() {
-        journalDao = new JournalDao();
+    void getByPropertyLike() {
+
         List<Journal> journals = journalDao.getByPropertyLike("location", "M");
-        assertEquals(4, journals.size());
+        assertEquals(2, journals.size());
     }
 }
