@@ -20,10 +20,12 @@ public class User {
     private String lastName;
     @Column(name = "user_name")
     private String userName;
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native",strategy = "native")
     private int id;
+
 
 
 
@@ -39,7 +41,6 @@ public class User {
      * @param firstName the first name
      * @param lastName  the last name
      * @param userName  the user name
-     * @param id        the id
      */
     public User(String firstName, String lastName, String userName) {
         this.firstName = firstName;
@@ -122,14 +123,13 @@ public class User {
 
 
 
-
     @Override
     public String toString() {
         return "User{" +
+                ", id=" + id +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
-                ", id=" + id +
                 '}';
     }
 
