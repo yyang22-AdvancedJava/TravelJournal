@@ -21,7 +21,7 @@ I realized that I need to prioritize the core logic of 'Weather API Integration'
 Once the screen layouts are fully finalized next week, I expect to create a more detailed technical plan for how the backend will process and store this environmental data.
 
 ## Week 3
-2/4/2026 - 2 hours
+2/4/2026 - 4-5 hours
 
 Tasks Completed:
 
