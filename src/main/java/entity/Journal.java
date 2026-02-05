@@ -18,26 +18,18 @@ public class Journal {
     @GenericGenerator(name = "native",strategy = "native")
     private int id;
 
-    @Column(name = "user_id")
-    private int userId;
+    @ManyToOne
+    private User user;
 
-    @Column(name = "title")
     private String title;
 
     @Lob // Large Object (TEXT)
-    @Column(nullable = false)
+    @Column(nullable = true)
+
     private String content;
-
-    @Column(name = "created_at")
     private LocalDate created_at;
-
-    @Column(name = "updated_at")
     private LocalDate updated_at;
-
-    @Column(name = "location")
     private String location;
-
-    @Column(name = "weather")
     private String weather;
 
 
@@ -47,7 +39,7 @@ public class Journal {
     /**
      * Instantiates a new Journal
      *
-     * @param userId
+     * @param user
      * @param title
      * @param content
      * @param created_at
@@ -55,9 +47,9 @@ public class Journal {
      * @param location
      * @param weather
      */
-    public Journal(int userId, String title, String content, LocalDate created_at, LocalDate updated_at, String location, String weather) {
+    public Journal(User user, String title, String content, LocalDate created_at, LocalDate updated_at, String location, String weather) {
 
-        this.userId = userId;
+        this.user = user;
         this.title = title;
         this.content = content;
         this.created_at = created_at;
@@ -84,19 +76,19 @@ public class Journal {
     }
 
     /**
-     * Gets an User id
-     * @return user_id a user ID
+     * Gets an user
+     * @return user a user info
      */
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     /**
-     * Sets an user id
-     * @param userId a user's id
+     * Sets an user
+     * @param user a user info
      */
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     /**
@@ -203,7 +195,7 @@ public class Journal {
     public String toString() {
         return "Journal{" +
                 "id=" + id +
-                ", user_id=" + userId +
+                ", user=" + user +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", created_at=" + created_at +

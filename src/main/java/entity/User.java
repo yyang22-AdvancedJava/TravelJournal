@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 /**
  * A class to represent a user.
@@ -14,6 +15,11 @@ import java.time.temporal.ChronoUnit;
 @Entity
 @Table(name = "user") // case sensitive!!
 public class User {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
+    @GenericGenerator(name = "native",strategy = "native")
+    private int id;
+
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -21,12 +27,8 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
-    @GenericGenerator(name = "native",strategy = "native")
-    private int id;
-
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ArrayList<Journal> journals = new ArrayList<>();
 
 
     /**
@@ -48,6 +50,37 @@ public class User {
         this.userName = userName;
     }
 
+    /**
+     * @param journal
+     */
+    public void addOrder(Journal journal) {
+        journals.add(journal);
+        journal.setUser(this);
+    }
+
+    /**
+     * @param journal
+     */
+    public void removeOrder(Journal journal) {
+        journals.remove(journal);
+        journal.setUser(null);
+    }
+
+    /**
+     * Get journals
+     * @return journals Journals
+     */
+    public ArrayList<Journal> getJournals() {
+        return journals;
+    }
+
+    /**
+     * Sets journals
+     * @param journals Journals
+     */
+    public void setJournals(ArrayList<Journal> journals) {
+        this.journals = journals;
+    }
 
     /**
      * Gets first name.
