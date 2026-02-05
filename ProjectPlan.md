@@ -21,9 +21,9 @@
 - [x] Create the dev version of the database
 - [x] Create Journal entity
 - [x] Create a class to perform CRUD on journal - JournalDao
-- [x ] Create the config files for the DB connection info (dev and test)
-- [ x] Create a test version of the database for unit testing
-- [ x] Create unit tests for the JournalDao
+- [x] Create the config files for the DB connection info (dev and test)
+- [x] Create a test version of the database for unit testing
+- [x] Create unit tests for the JournalDao
 
 <br>
 
