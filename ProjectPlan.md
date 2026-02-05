@@ -21,15 +21,15 @@
 - [x] Create the dev version of the database
 - [x] Create Journal entity
 - [x] Create a class to perform CRUD on journal - JournalDao
+- [x ] Create the config files for the DB connection info (dev and test)
+- [ x] Create a test version of the database for unit testing
+- [ x] Create unit tests for the JournalDao
 
 <br>
 
 ## Week 4 - Class topic is Hibernate
 Focus: City Search & Journal Entity Implementation
 
-- [ ] Create the config files for the DB connection info (dev and test)
-- [ ] Create a test version of the database for unit testing
-- [ ] Create unit tests for the JournalDao
 - [ ] Create a class for the DB connection business
 - [ ] Create JSP for finding cities/weather
 - [ ] Create JSP for journal results
