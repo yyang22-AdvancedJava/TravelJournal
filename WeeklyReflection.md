@@ -20,7 +20,7 @@ By organizing the User Stories and identifying the MVP (Minimum Viable Product) 
 I realized that I need to prioritize the core logic of 'Weather API Integration' and 'Dynamic Background Color Adjustment' over the more vague ideas I initially had. 
 Once the screen layouts are fully finalized next week, I expect to create a more detailed technical plan for how the backend will process and store this environmental data.
 
-## Week 3
+## Week 4
 2/4/2026 - 4-5 hours
 
 Tasks Completed:
