@@ -14,3 +14,5 @@ The problem is that travel memories are more than just images; they are tied to 
 
 ### [Project Plan](https://github.com/yyang22-AdvancedJava/TravelJournal/blob/main/ProjectPlan.md)
 
+### [Time Log](https://github.com/yyang22-AdvancedJava/TravelJournal/blob/main/TimeLog.md)
+
