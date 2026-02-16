@@ -13,7 +13,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="AWS" uuid="bb0f113c-1e6a-4994-b265-9cc9df02c499">
+    <data-source source="LOCAL" name="AWS" uuid="641e7c67-d087-4c0d-b439-773baad93ec4">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

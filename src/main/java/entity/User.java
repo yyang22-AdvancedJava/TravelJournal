@@ -27,6 +27,8 @@ public class User {
     private String lastName;
     @Column(name = "user_name")
     private String userName;
+    @Column(name = "password")
+    private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.EAGER)
     private List<Journal> journals = new ArrayList<>();
@@ -44,17 +46,19 @@ public class User {
      * @param firstName the first name
      * @param lastName  the last name
      * @param userName  the user name
+     * @param password  the password
      */
-    public User(String firstName, String lastName, String userName) {
+    public User(String firstName, String lastName, String userName, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
+        this.password = password;
     }
 
     /**
      * @param journal
      */
-    public void addOrder(Journal journal) {
+    public void addJournal(Journal journal) {
         journals.add(journal);
         journal.setUser(this);
     }
@@ -62,7 +66,7 @@ public class User {
     /**
      * @param journal
      */
-    public void removeOrder(Journal journal) {
+    public void removeJournal(Journal journal) {
         journals.remove(journal);
         journal.setUser(null);
     }
@@ -138,6 +142,22 @@ public class User {
     }
 
     /**
+     * Gets a password
+     * @return password the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Sets a possword
+     * @param password the password
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
      * Gets id.
      *
      * @return the id
@@ -164,6 +184,7 @@ public class User {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 

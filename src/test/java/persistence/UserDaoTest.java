@@ -44,7 +44,7 @@ class UserDaoTest {
     @Test
     void insert() {
         userDao = new UserDao();
-        User userToInsert = new User("Kia", "Yang", "ky001");
+        User userToInsert = new User("Kia", "Yang", "ky001", "hy001pw");
         int insertedUserId = userDao.insert(userToInsert);
         assertNotEquals(0, insertedUserId);
         User insertedUser = userDao.getById(insertedUserId);

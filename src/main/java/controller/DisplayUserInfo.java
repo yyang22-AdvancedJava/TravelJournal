@@ -1,5 +1,8 @@
 package controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +16,8 @@ import java.io.IOException;
  */
 @WebServlet("/displayUserInfo")
 public class DisplayUserInfo extends HttpServlet {
+
+    private static final Logger log = LogManager.getLogger(DisplayUserInfo.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

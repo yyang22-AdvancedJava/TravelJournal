@@ -46,7 +46,8 @@ public class UserDao {
      * @param user  User to be inserted
      */
     public int insert(User user) {
-        int id = 0;
+        //int id = 0;
+        int id;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(user);

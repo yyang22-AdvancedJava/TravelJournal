@@ -7,4 +7,9 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
   <display-name>Archetype Created Web Application</display-name>
+  <!--  In ordr to go to the Controller First before executing index.jsp -->
+  <welcome-file-list>
+    <welcome-file>displayAllJournals</welcome-file>
+  </welcome-file-list>
 </web-app>
+
