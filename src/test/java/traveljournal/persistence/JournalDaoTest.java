@@ -1,12 +1,14 @@
-package persistence;
+package traveljournal.persistence;
 
 
 
-import entity.Journal;
-import entity.User;
+import com.traveljournal.entity.Journal;
+import com.traveljournal.entity.User;
+import com.traveljournal.persistence.JournalDao;
+import com.traveljournal.persistence.UserDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import util.Database;
+import traveljournal.util.Database;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +19,9 @@ class JournalDaoTest {
 
     JournalDao journalDao;
 
+    /**
+     * Test to clean the DB
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
@@ -24,6 +29,9 @@ class JournalDaoTest {
         journalDao = new JournalDao();
     }
 
+    /**
+     * test to get a journal by id
+     */
     @Test
     void getById() {
 
@@ -32,6 +40,9 @@ class JournalDaoTest {
         assertEquals("Administrator 1", retrievedJournal.getTitle());
     }
 
+    /**
+     * test to revise a journal
+     */
     @Test
     void update() {
 
@@ -45,6 +56,9 @@ class JournalDaoTest {
     }
 
 
+    /**
+     * test to insert a journal
+     */
     @Test
     void insert() {
         // get a user
@@ -69,6 +83,10 @@ class JournalDaoTest {
     }
 
 
+
+    /**
+     * test to delete a journal
+     */
     @Test
     void delete() {
 
@@ -76,6 +94,9 @@ class JournalDaoTest {
         assertNull(journalDao.getById(4));
     }
 
+    /**
+     * test to get all journals
+     */
     @Test
     void getAll() {
 
@@ -83,6 +104,9 @@ class JournalDaoTest {
         assertEquals(4, journals.size());
     }
 
+    /**
+     * test to get a journal with search
+     */
     @Test
     void getByPropertyEqual() {
 
@@ -91,6 +115,9 @@ class JournalDaoTest {
         assertEquals(5, journals.get(0).getId());
     }
 
+    /**
+     * test to get a journal with search
+     */
     @Test
     void getByPropertyLike() {
 

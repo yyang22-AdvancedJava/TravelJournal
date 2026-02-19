@@ -1,9 +1,11 @@
-package persistence;
+package traveljournal.persistence;
 
-import entity.Journal;
-import entity.User;
+import com.traveljournal.entity.Journal;
+import com.traveljournal.entity.User;
 
-import util.Database;
+import com.traveljournal.persistence.JournalDao;
+import com.traveljournal.persistence.UserDao;
+import traveljournal.util.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -14,12 +16,18 @@ class UserDaoTest {
 
     UserDao userDao;
 
+    /**
+     * Test to reset the DB
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
         database.runSQL("cleanDB.sql");
     }
 
+    /**
+     * Test to get a user by Id
+     */
     @Test
     void getById() {
         userDao = new UserDao();
@@ -28,6 +36,9 @@ class UserDaoTest {
         assertEquals("admin", retrievedUser.getUserName());
     }
 
+    /**
+     * Test to revise a user
+     */
     @Test
     void update() {
         userDao = new UserDao();
@@ -41,6 +52,9 @@ class UserDaoTest {
 
     }
 
+    /**
+     * TEst to insert a user
+     */
     @Test
     void insert() {
         userDao = new UserDao();
@@ -51,6 +65,9 @@ class UserDaoTest {
         assertEquals("Kia", insertedUser.getFirstName());
     }
 
+    /**
+     * Test to delete a user
+     */
     @Test
     void delete() {
         userDao = new UserDao();
@@ -59,6 +76,9 @@ class UserDaoTest {
 
     }
 
+    /**
+     * Test to delete a user with journals
+     */
     @Test
     void deleteWithJournals() {
         // create the userDao
@@ -84,6 +104,9 @@ class UserDaoTest {
         assertNull(journalDao.getById(orderNumber2));
     }
 
+    /**
+     * Test to get all journals
+     */
     @Test
     void getAll() {
         userDao = new UserDao();
@@ -92,6 +115,9 @@ class UserDaoTest {
 
     }
 
+    /**
+     * Test a get user with search
+     */
     @Test
     void getByPropertyEqual() {
         userDao = new UserDao();
@@ -101,6 +127,9 @@ class UserDaoTest {
 
     }
 
+    /**
+     * Test a get user with search
+     */
     @Test
     void getByPropertyLike() {
         userDao = new UserDao();

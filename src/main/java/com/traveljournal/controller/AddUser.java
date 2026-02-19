@@ -1,9 +1,9 @@
-package controller;
+package com.traveljournal.controller;
 
 //import edu.matc.entity.User;
 
-import entity.User;
-import persistence.UserDao;
+import com.traveljournal.entity.User;
+import com.traveljournal.persistence.UserDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 /**

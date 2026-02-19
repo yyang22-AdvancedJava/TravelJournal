@@ -1,6 +1,6 @@
-package controller;
+package com.traveljournal.controller;
 
-import persistence.UserDao;
+import com.traveljournal.persistence.UserDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

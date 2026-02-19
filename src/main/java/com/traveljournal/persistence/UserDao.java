@@ -1,7 +1,7 @@
-package persistence;
+package com.traveljournal.persistence;
 
 
-import entity.User;
+import com.traveljournal.entity.User;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Root;

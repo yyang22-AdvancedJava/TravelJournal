@@ -1,6 +1,6 @@
-package controller;
+package com.traveljournal.controller;
 
-import persistence.JournalDao;
+import com.traveljournal.persistence.JournalDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,7 +37,7 @@ public class DisplayAllJournals extends HttpServlet {
 
         req.setAttribute("journals", journalDao.getAll());
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/displayJournals.jsp");
         dispatcher.forward(req, resp);
     }
 }
