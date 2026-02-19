@@ -16,6 +16,7 @@
 | 2/5  | Week 5 Class                                                                                                   | 2-3 hours|
 |      | Week 5 Exercise Completion: Journal Table upgrade using user_id & JournalDao Upgrade using Entity              | 3 hours |
 | 2/11 | Week 6 Class & Exercise - Have been Working on it more than 6 hours now.....                                   | 10 hours |
+| 2/15 | Indie Project: Deploying it through the AWS, Working on the Dao, and Made some pages working done through DAO  | 4 hours |
 
 
 
