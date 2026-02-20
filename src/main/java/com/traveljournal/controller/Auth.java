@@ -124,14 +124,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         // 또는
         resp.sendRedirect("index.jsp"); // 메인 페이지로 이동
         */
-
+        /*
         RequestDispatcher dispatcher = req.getRequestDispatcher("displayAllJournals");
         dispatcher.forward(req, resp);
-
-        /*
+        */
         RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
         dispatcher.forward(req, resp);
-        */
     }
 
     /**
