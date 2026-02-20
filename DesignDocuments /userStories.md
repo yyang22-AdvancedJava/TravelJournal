@@ -7,11 +7,11 @@ As a new user I want to create an account so that I can add or edit travel journ
 __Sign In *__\
 As a registered user I want to log in to the Travel Journal app.
 
-__Password Reset *__\
-As a registered user or admin user, I want to be able to reset my password when I forget it.
-
 __Sign Out *__\
 As a registered user, I have finished writing in the Travel Journal app and want to log out.
+
+__Password Reset *__\
+As a registered user or admin user, I want to be able to reset my password when I forget it.
 
 <br>
 
