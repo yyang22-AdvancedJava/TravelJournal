@@ -39,7 +39,7 @@
         </tbody>
 
     </table>
-    <a href="index.jsp">Go back to the Homepage</a>
+    <a href="index_cognito.jsp">Go back to the Homepage</a>
 </div>
 </body>
 </html>

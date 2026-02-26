@@ -8,7 +8,7 @@
          version="3.1">
   <display-name>Archetype Created Web Application</display-name>
   <!--
-  &lt;!&ndash;  In ordr to go to the Controller First before executing index.jsp &ndash;&gt;
+  &lt;!&ndash;  In ordr to go to the Controller First before executing index_cognito.jsp &ndash;&gt;
   <welcome-file-list>
     <welcome-file>displayAllJournals</welcome-file>
   </welcome-file-list>

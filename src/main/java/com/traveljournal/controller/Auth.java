@@ -83,7 +83,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         if (authCode == null) {
             //TODO forward to an error page or back to the login
-            resp.sendRedirect("/index.jsp");
+            resp.sendRedirect("/index_cognito.jsp");
         } else {
             HttpRequest authRequest = buildAuthRequest(authCode);
             try {
@@ -108,7 +108,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             }
         }
         /*
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("index_cognito.jsp");
         dispatcher.forward(req, resp);
         */
         /*** Warning!!! ***/
@@ -122,7 +122,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         // 원하는 곳으로 보내기 (주소창이 바뀜)
         resp.sendRedirect("displayAllJournals"); // 예: 게시판 목록 서블릿으로 이동
         // 또는
-        resp.sendRedirect("index.jsp"); // 메인 페이지로 이동
+        resp.sendRedirect("index_cognito.jsp"); // 메인 페이지로 이동
         */
         RequestDispatcher dispatcher = req.getRequestDispatcher("displayAllJournals");
         dispatcher.forward(req, resp);
