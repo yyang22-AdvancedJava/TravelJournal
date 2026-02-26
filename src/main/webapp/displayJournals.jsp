@@ -26,6 +26,7 @@
     </form>
 </div>
 --%>
+
 <c:forEach items="${journals}" var="journal">
     <div class="card ms-3 mb-3 mt-3" style="width: 50rem; height: 15rem">
         <div class="card-header">
@@ -37,10 +38,12 @@
         <div class="card-body">
             <h4 class="card-subtitle mb-2 text-body-secondary text-end ms-auto" >${journal.weather}</h4>
             <h4 class="card-text">${journal.content}</h4>
-            <%--
+<%--
+
             <a href="#" class="card-link">Card link</a>
             <a href="#" class="card-link">Another link</a>
-            --%>
+--%>
+
         </div>
         <div class="text-end mb-3">
             <form action="deleteJournal" method="post" style="display:inline">
@@ -53,5 +56,6 @@
         </div>
     </div>
 </c:forEach>
+
 </body>
 </html>

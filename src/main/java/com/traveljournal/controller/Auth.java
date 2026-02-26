@@ -108,7 +108,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             }
         }
         /*
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index_cognito.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
         dispatcher.forward(req, resp);
         */
         /*** Warning!!! ***/
