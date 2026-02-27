@@ -18,6 +18,9 @@
 | 2/11 | Week 6 Class & Exercise - Have been Working on it more than 6 hours now.....                                   | 10 hours |
 | 2/15 | Indie Project: Deploying it through the AWS, Working on the Dao, and Made some pages working done through DAO  | 4 hours |
 | 2/19 | Week 7 Class & Exercise - Cognito Worked pretty well                                                           | 1-2 hours |
+| 2/20-25 | Week 7 Cognito - Beanstalk Connection : Did not work well                                                   | 10 hours |
+| 2/26 | Week 7 Get Cognito - Beanstalk work again                                                                      | 6 hours |
+| 2/20-26 | Week 8 - Weather API                                                                                        | 3 hours |
 
 
 
