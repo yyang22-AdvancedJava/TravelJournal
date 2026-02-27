@@ -20,7 +20,7 @@
 | 2/19 | Week 7 Class & Exercise - Cognito Worked pretty well                                                           | 1-2 hours |
 | 2/20-25 | Week 7 Cognito - Beanstalk Connection : Did not work well                                                   | 10 hours |
 | 2/26 | Week 7 Get Cognito - Beanstalk work again                                                                      | 6 hours |
-| 2/20-26 | Week 8 - Weather API                                                                                        | 3 hours |
+| 2/20-26 | Week 8 - Weather API - Activities & Exercise - Completed                                                    | 3 hours |
 
 
 
