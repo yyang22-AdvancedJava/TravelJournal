@@ -1,6 +1,6 @@
 # Time Log
 
-| Date | Task                                                                                                           | Hours |
+| Date   | Task                                                                                                           | Hours |
 | ---  | ---                                                                                                            | --- |
 | 1/8  | Week 1 Class & Exercise Completion                                                                             | 5 hours|
 | 1/9  | Challenge 1 & 2                                                                                                | 2 hours|
