@@ -61,16 +61,19 @@ Checkpoint 2 Due: Database, Hibernate DAO, Unit Testing, Log4J
 
 ## Spring Break
 - [ ] Create all necesasry JSP files
-- [ ] Cognito - TravelJournal: Automated User Registration (Integrate Cognito Database with TravelJournal)
-- [ ] 
 
 <br>
 
 ## Week 9 (Start of the team project)
 Checkpoint 3 Due: AWS Deployment, JSP Data Display, Authentication
-
+- [ ] JournalDao Update - displaying journals by cities
+- [ ] JournalDao Update - displaying journals by weather
 - [ ] Double-check all checkpoint 3 items are complete and visible in GitHub.
 
+<br>
+
+## Week 10
+- [ ] Cognito - TravelJournal: Automated User Registration (Integrate Cognito Database with TravelJournal)
 <br>
 
 ## Week 15
