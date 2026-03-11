@@ -1,4 +1,6 @@
-<%@ include file="head.jsp" %>
+<%--<%@ include file="head.jsp" %>--%>
+<c:import url="head.jsp" />
+
 <%--
   Created by IntelliJ IDEA.
   User: student

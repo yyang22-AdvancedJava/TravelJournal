@@ -1,6 +1,7 @@
 <%@include file="taglib.jsp"%>
 <c:set var="title" value="My Journals" />
-<%@include file="head.jsp"%>
+<%--<%@include file="head.jsp"%>--%>
+<c:import url="head.jsp" />
 <html>
 <body>
 <h3>Welcome ${userName}</h3>

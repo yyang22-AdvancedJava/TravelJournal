@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * A servlet to add a user.
@@ -23,6 +25,7 @@ import java.util.List;
 public class AddUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    final Logger logger = LogManager.getLogger(this.getClass());
 
 
         // Get form parameters from the request
@@ -35,7 +38,8 @@ public class AddUser extends HttpServlet {
         // To check existing users
         UserDao userDao = new UserDao();
         List<User> users = userDao.getByPropertyLike("userName", userName);
-        System.out.println("Users: " + users);
+        //System.out.println("Users: " + users);
+        logger.debug("Users: " + users);
 
 
         // Insert the new user into the database using UserData class

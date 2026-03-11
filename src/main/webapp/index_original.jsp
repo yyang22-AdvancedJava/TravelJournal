@@ -1,5 +1,6 @@
 <%@include file="taglib.jsp"%>
-<%@include file="head.jsp"%>
+<%--<%@include file="head.jsp"%>--%>
+<c:import url="head.jsp" />
 <html>
 <body>
 <c:if test="${not empty message}">

@@ -110,7 +110,7 @@ class JournalDaoTest {
     @Test
     void getByPropertyEqual() {
 
-        List<Journal> journals = journalDao.getByPropertyLike("location", "Madison");
+        List<Journal> journals = journalDao.getByPropertyEqual("location", "Madison");
         //assertEquals(4, journals.size());
         assertEquals(5, journals.get(0).getId());
     }
@@ -123,5 +123,22 @@ class JournalDaoTest {
 
         List<Journal> journals = journalDao.getByPropertyLike("location", "M");
         assertEquals(2, journals.size());
+    }
+
+    /**
+     * test to see what happens to User
+     * when the same Uer's journal is deleted
+     */
+    @Test
+    void testDeleteJournalKeepUser() {
+        Journal journal = journalDao.getById(1);
+        int userId = journal.getUser().getId();
+
+        journalDao.delete(journal); // Journal 삭제
+
+        assertNull(journalDao.getById(1)); // Journal은 지워짐
+
+        UserDao userDao = new UserDao();
+        assertNotNull(userDao.getById(userId)); // 하지만 주인 User는 여전히 DB에 있어야 함!
     }
 }

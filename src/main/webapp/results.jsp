@@ -1,6 +1,7 @@
 <%@include file="taglib.jsp"%>
 <c:set var="title" value="Search Results" />
-<%@include file="head.jsp"%>
+<%--<%@include file="head.jsp"%>--%>
+<c:import url="head.jsp" />
 <%--
 
 <script type="text/javascript" class="init">

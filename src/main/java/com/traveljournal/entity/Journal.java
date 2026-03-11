@@ -188,7 +188,7 @@ public class Journal {
     }
 
     /**
-     * Print out the Journal info
+     * Display the Journal info
      * @return the Journal info
      */
     @Override

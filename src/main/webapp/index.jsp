@@ -1,5 +1,6 @@
-<%@include file="head.jsp"%>
 <%@include file="taglib.jsp"%>
+<%--<%@include file="head.jsp"%>--%>
+<c:import url="head.jsp" />
 <html>
 <body>
 <c:choose>

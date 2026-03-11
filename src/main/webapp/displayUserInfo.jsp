@@ -1,4 +1,5 @@
-<%@include file="head.jsp"%>
+<%--<%@include file="head.jsp"%>--%>
+<c:import url="head.jsp" />
 <html>
 <head>
     <title>Display User Info</title>
