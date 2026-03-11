@@ -44,9 +44,9 @@ Checkpoint 2 Due: Database, Hibernate DAO, Unit Testing, Log4J
 
 - [x] Double-check all checkpoint 2 items are complete and visible in GitHub.
 - [x] Set up Authentication in indie project.
-~~- [ ] Create project DB on AWS.~~
-~~- [ ] Update project config files for AWS as needed~~
-~~- [ ] Deploy project to AWS~~
+- ~~[ ] Create project DB on AWS.~~
+- ~~[ ] Update project config files for AWS as needed~~
+- ~~[ ] Deploy project to AWS~~
 - [x] Add deployed link to indie project list in student repo
 
 <br>
