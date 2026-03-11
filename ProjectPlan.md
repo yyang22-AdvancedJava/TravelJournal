@@ -30,24 +30,24 @@
 ## Week 4 - Class topic is Hibernate
 Focus: City Search & Journal Entity Implementation
 
-- [ ] Create a class for the DB connection business
+- [x] Create a class for the DB connection business
 - [ ] Create JSP for finding cities/weather
-- [ ] Create JSP for journal results
+- [x] Create JSP for journal results
 - [ ] Create controller to route to search-city.jsp
 - [ ] Create controller to manage the work of finding a city
-- [ ] Update weekly reflection
+- [x] Update weekly reflection
 
 <br>
 
 ## Week 7
 Checkpoint 2 Due: Database, Hibernate DAO, Unit Testing, Log4J
 
-- [ ] Double-check all checkpoint 2 items are complete and visible in GitHub.
-- [ ] Set up Authentication in indie project.
-- [ ] Create project DB on AWS.
-- [ ] Update project config files for AWS as needed
-- [ ] Deploy project to AWS
-- [ ] Add deployed link to indie project list in student repo
+- [x] Double-check all checkpoint 2 items are complete and visible in GitHub.
+- [x] Set up Authentication in indie project.
+~~- [ ] Create project DB on AWS.~~
+~~- [ ] Update project config files for AWS as needed~~
+~~- [ ] Deploy project to AWS~~
+- [x] Add deployed link to indie project list in student repo
 
 <br>
 
