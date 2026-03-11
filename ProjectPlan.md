@@ -49,7 +49,6 @@ Checkpoint 2 Due: Database, Hibernate DAO, Unit Testing, Log4J
 - [ ] ~~Deploy project to AWS~~
 - [x] Add deployed link to indie project list in student repo
 - [x] AWS Cognito Configuration
-- [ ] [New] Automated User Registration (Check this Later!)
 - [x] Hibernate Entity Development
 
 <br>
@@ -57,8 +56,15 @@ Checkpoint 2 Due: Database, Hibernate DAO, Unit Testing, Log4J
 ## Week 8
 - [x] Weather API Consumption
 - [x] API DAO Implementation
-- [ ] Travel Journal Integration
+      
+<br>
 
+## Spring Break
+- [ ] Create all necesasry JSP files
+- [ ] Cognito - TravelJournal: Automated User Registration (Integrate Cognito Database with TravelJournal)
+- [ ] 
+
+<br>
 
 ## Week 9 (Start of the team project)
 Checkpoint 3 Due: AWS Deployment, JSP Data Display, Authentication
