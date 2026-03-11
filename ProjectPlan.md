@@ -56,6 +56,11 @@ Checkpoint 2 Due: Database, Hibernate DAO, Unit Testing, Log4J
 ## Week 8
 - [x] Weather API Consumption
 - [x] API DAO Implementation
+#### Ready for Checkpoint 3
+- [ ] ~~Deployed to AWS~~ (CANNOT use Beanstalk, RDS)
+- [x] At least one JSP that displays data from the database is implemented (Main page)
+- [x] Authentication implemented
+
       
 <br>
 
