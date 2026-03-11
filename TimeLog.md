@@ -22,7 +22,8 @@
 | 2/26 | Week 7 Get Cognito - Beanstalk work again                                                                      | 6 hours |
 | 2/20-26 | Week 8 - Weather API - Activities & Exercise - Completed                                                    | 3 hours |
 | 3/6 | Week 6 - Peer Review                                                    | 1 hour |
-
+| 3/11 | Week 9 - Exercise                                                    | 2 hours |
+|  | Indie Project: Updating ERD, Project Plans and Feedback from Checkpoint 2                                                    | 2 hours |
 
 
 
