@@ -62,7 +62,6 @@ public class WeatherDao implements PropertiesLoader {
         WebTarget target =
                 //client.target("http://api.weatherapi.com/v1/current.json")
                 client.target(WEATHER_URL)
-                        //.queryParam("key", "8fa7d4618f2847dab6c14137262702")
                         .queryParam("key", WEATHER_KEY)
                         .queryParam("q", city);
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);

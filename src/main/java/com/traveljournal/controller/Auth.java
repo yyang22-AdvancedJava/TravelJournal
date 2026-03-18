@@ -35,10 +35,19 @@ import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
+/*
+
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Properties;
+*/
+import java.util.*;
+
 import java.util.stream.Collectors;
+
+
+import com.traveljournal.entity.User; // 유저 엔티티 임포트
+import com.traveljournal.persistence.GenericDao; // Dao 임포트
 
 
 @WebServlet(
@@ -93,11 +102,41 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 req.setAttribute("userName", userName);
                 */
 
+                /* Original Code before putting user info from cognito into db
                 TokenResponse tokenResponse = getToken(authRequest);
                 String userEmail = JWT.decode(tokenResponse.getIdToken())
                         .getClaim("email")
                         .asString();
                 req.setAttribute("userName", userEmail);
+
+                 */
+
+                TokenResponse tokenResponse = getToken(authRequest);
+
+                // 1. 토큰에서 이메일 추출
+                String userEmail = JWT.decode(tokenResponse.getIdToken())
+                        .getClaim("email")
+                        .asString();
+
+                // 2. DB 확인 및 사용자 객체 가져오기 (추가된 핵심 로직)
+                GenericDao<User> userDao = new GenericDao<>(User.class);
+                List<User> users = userDao.getByPropertyEqual("userName", userEmail);
+                User currentUser;
+
+                if (users.isEmpty()) {
+                    // DB에 없는 사용자면 새로 추가
+                    logger.info("New user. Registering: " + userEmail);
+                    currentUser = new User();
+                    currentUser.setUserName(userEmail);
+                    userDao.insert(currentUser);
+                } else {
+                    // 이미 있는 사용자면 DB에서 가져옴
+                    currentUser = users.get(0);
+                }
+
+                // 3. 세션에 사용자 엔티티 저장 (Key Point!)
+                req.getSession().setAttribute("user", currentUser);
+                req.setAttribute("userName", userEmail); // 기존 유지
 
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
@@ -124,8 +163,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         // 또는
         resp.sendRedirect("index_cognito.jsp"); // 메인 페이지로 이동
         */
+
+        /* Original Code before putting user info from cognito into db
         RequestDispatcher dispatcher = req.getRequestDispatcher("displayAllJournals");
         dispatcher.forward(req, resp);
+         */
+        resp.sendRedirect("displayAllJournals");
     }
 
     /**
