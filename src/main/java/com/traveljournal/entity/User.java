@@ -1,5 +1,6 @@
 package com.traveljournal.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -29,6 +30,10 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.EAGER)
+
+    /*** To have JSOn WORk ***/
+    @JsonManagedReference // "내가 관리 주체다"라고 선언
+
     private List<Journal> journals = new ArrayList<>();
 
 

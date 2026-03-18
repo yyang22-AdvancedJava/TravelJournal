@@ -1,5 +1,7 @@
 package com.traveljournal.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,7 +21,14 @@ public class Journal {
     private int id;
 
     @ManyToOne
+
+    /*** To have JSOn WORk ***/
+    @JoinColumn(name = "user_id")
+    @JsonBackReference // "역방향 참조이므로 JSON 변환 시 무시해라"고 지시
+
     private User user;
+
+
 
     private String title;
 

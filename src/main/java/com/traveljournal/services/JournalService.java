@@ -1,4 +1,4 @@
-package com.traveljournal.controller;
+package com.traveljournal.services;
 
 import com.traveljournal.persistence.JournalDao; // 본인의 DAO 클래스명 확인
 import com.traveljournal.entity.Journal;        // 본인의 Entity 클래스명 확인
@@ -18,9 +18,10 @@ public class JournalService {
     JournalDao dao = new JournalDao();
 
     /**
-     * Get all Journals
+     * Get all Journals in text
      * URL: /services/journals
      */
+    /*
     @GET
     @Produces(MediaType.TEXT_HTML) // 출력을 HTML로 설정
     //@Produces("text/plain")
@@ -47,6 +48,7 @@ public class JournalService {
         //return Response.status(200).entity(journals).build();
         return Response.status(200).entity(html.toString()).build();
     }
+    */
 
     /**
      * 특정 ID의 일지 반환 (Extra Challenge - PathParam 활용)
@@ -75,4 +77,17 @@ public class JournalService {
         return Response.status(200).entity(html).build();
     }
     */
+
+    // JSON
+    @GET
+    @Produces(MediaType.APPLICATION_JSON) // 1. 출력을 JSON으로 설정
+    public Response getAllEntries() {
+        List<Journal> journals = dao.getAll();
+
+        // 2. HTML 문자열 대신 자바 객체(List)를 그대로 반환
+        // Jersey와 Jackson 라이브러리가 협력하여 자동으로 JSON 배열로 변환합니다.
+        return Response.status(200)
+                .entity(journals)
+                .build();
+    }
 }
