@@ -1,5 +1,6 @@
 package com.traveljournal.persistence;
 
+import com.traveljournal.persistence.original.WeatherDao;
 import com.weatherapi.Weather;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

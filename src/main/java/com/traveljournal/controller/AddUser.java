@@ -1,9 +1,9 @@
 package com.traveljournal.controller;
 
-//import edu.matc.entity.User;
-
 import com.traveljournal.entity.User;
 import com.traveljournal.persistence.UserDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,58 +12,53 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
- * A servlet to add a user.
- * @author yyang22
+ * 사용자 추가를 담당하는 서블릿.
+ * Cognito 연동 구조에 맞게 수정되었습니다.
  */
 @WebServlet("/addUser")
-
 public class AddUser extends HttpServlet {
+    private final Logger logger = LogManager.getLogger(this.getClass());
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    final Logger logger = LogManager.getLogger(this.getClass());
 
-
-        // Get form parameters from the request
+        // 1. 폼 파라미터 가져오기
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
-        String reEnterPassword = req.getParameter("reEnterPassword");
+        // Cognito 연동 시 클라이언트나 람다에서 전달해준 cognitoId가 있다면 가져옵니다.
+        // 현재 폼에 없다면 임시로 null이나 userName을 넣을 수 있습니다.
+        String cognitoId = req.getParameter("cognitoId");
 
-        // To check existing users
         UserDao userDao = new UserDao();
-        List<User> users = userDao.getByPropertyLike("userName", userName);
-        //System.out.println("Users: " + users);
-        logger.debug("Users: " + users);
 
+        // 2. 중복 검사 (userName으로 정확히 일치하는 유저가 있는지 확인)
+        User existingUser = userDao.getByUserName(userName);
 
-        // Insert the new user into the database using UserData class
-        //UserData userData = new UserData();
-        boolean userCanBeAdded = false;
+        if (existingUser == null) {
+            // 3. 새로운 User 객체 생성
+            // 중요: 우리가 새로 만든 User 엔티티 생성자는 5개의 인자를 받습니다.
+            // (firstName, lastName, userName, password, cognitoId)
+            User userToInsert = new User(firstName, lastName, userName, password, cognitoId);
 
-        // if (req.getParameter("submit").equals("add")) {
-        // if (users.size() != 0) {
-        if (users.isEmpty()) {
-            userCanBeAdded = true;
-        }
-
-        // Add a success or error message based on user creation
-        if (userCanBeAdded) {
-            User userToInsert = new User(firstName, lastName, userName, password);
-            userDao.insert(userToInsert);
-            req.setAttribute("message", "User added successfully!");
+            try {
+                userDao.insert(userToInsert);
+                logger.info("새로운 유저 등록 성공: " + userName);
+                req.setAttribute("message", "User added successfully!");
+            } catch (Exception e) {
+                logger.error("유저 등록 중 오류 발생", e);
+                req.setAttribute("message", "Error occurred while adding user.");
+            }
         } else {
+            logger.warn("중복된 사용자 이름 시도: " + userName);
             req.setAttribute("message", "Username already exists. Please try again.");
         }
 
+        // 4. 결과 페이지로 포워딩
         RequestDispatcher dispatcher = req.getRequestDispatcher("/addResult.jsp");
         dispatcher.forward(req, resp);
-
-
     }
 }

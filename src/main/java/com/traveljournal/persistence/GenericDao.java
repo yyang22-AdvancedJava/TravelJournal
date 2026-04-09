@@ -1,8 +1,6 @@
 package com.traveljournal.persistence;
 
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -12,89 +10,92 @@ import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 import java.util.List;
 
 /**
- * 모든 DAO의 공통 기능을 담은 제네릭 클래스입니다.
+ * 모든 DAO의 공통 기능을 담은 단일 GenericDao 클래스
  */
 public class GenericDao<T> {
     private final Logger logger = LogManager.getLogger(this.getClass());
     private Class<T> type;
     private SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
-    /**
-     * @param type 엔티티 클래스 타입 (예: User.class, Journal.class)
-     */
     public GenericDao(Class<T> type) {
         this.type = type;
     }
 
-    /** ID로 엔티티 조회 */
+    private Session getSession() {
+        return sessionFactory.openSession();
+    }
+
     public T getById(int id) {
-        Session session = sessionFactory.openSession();
-        T entity = session.get(type, id);
-        session.close();
-        return entity;
+        try (Session session = getSession()) {
+            return session.get(type, id);
+        }
     }
 
-    /** 엔티티 업데이트 (merge) */
-    public void update(T entity) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.merge(entity);
-        transaction.commit();
-        session.close();
-    }
-
-    /** 엔티티 삽입 (persist) */
     public int insert(T entity) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.persist(entity);
-        transaction.commit();
-        session.close();
-        return 1; // 성공 시 임의의 값 반환
+        int id = 0;
+        Transaction transaction = null;
+        try (Session session = getSession()) {
+            transaction = session.beginTransaction();
+            session.persist(entity);
+            transaction.commit();
+            // 하이버네이트가 엔티티 객체에 ID를 자동으로 채워줍니다.
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            logger.error("Insert error", e);
+        }
+        return id; // 필요시 객체에서 직접 id를 꺼내 쓰면 됩니다.
     }
 
-    /** 엔티티 삭제 (delete) */
+    public void update(T entity) {
+        Transaction transaction = null;
+        try (Session session = getSession()) {
+            transaction = session.beginTransaction();
+            session.merge(entity);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            logger.error("Update error", e);
+        }
+    }
+
     public void delete(T entity) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(entity);
-        transaction.commit();
-        session.close();
+        Transaction transaction = null;
+        try (Session session = getSession()) {
+            transaction = session.beginTransaction();
+            session.remove(session.contains(entity) ? entity : session.merge(entity));
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            logger.error("Delete error", e);
+        }
     }
 
-    /** 전체 목록 조회 */
     public List<T> getAll() {
-        Session session = sessionFactory.openSession();
-        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(type);
-        query.from(type);
-        List<T> list = session.createSelectionQuery(query).getResultList();
-        session.close();
-        return list;
+        try (Session session = getSession()) {
+            HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = builder.createQuery(type);
+            query.from(type);
+            return session.createSelectionQuery(query).getResultList();
+        }
     }
 
-    /** 강사님이 지적하신 완전 일치 검색 (Equal) */
     public List<T> getByPropertyEqual(String propertyName, Object value) {
-        Session session = sessionFactory.openSession();
-        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(type);
-        Root<T> root = query.from(type);
-        query.select(root).where(builder.equal(root.get(propertyName), value));
-        List<T> list = session.createSelectionQuery(query).getResultList();
-        session.close();
-        return list;
+        try (Session session = getSession()) {
+            HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = builder.createQuery(type);
+            Root<T> root = query.from(type);
+            query.select(root).where(builder.equal(root.get(propertyName), value));
+            return session.createSelectionQuery(query).getResultList();
+        }
     }
 
-    /** 부분 일치 검색 (Like) */
     public List<T> getByPropertyLike(String propertyName, String value) {
-        Session session = sessionFactory.openSession();
-        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(type);
-        Root<T> root = query.from(type);
-        Expression<String> propertyPath = root.get(propertyName);
-        query.where(builder.like(propertyPath, "%" + value + "%"));
-        List<T> list = session.createQuery(query).getResultList();
-        session.close();
-        return list;
+        try (Session session = getSession()) {
+            HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = builder.createQuery(type);
+            Root<T> root = query.from(type);
+            query.where(builder.like(root.get(propertyName), "%" + value + "%"));
+            return session.createSelectionQuery(query).getResultList();
+        }
     }
 }

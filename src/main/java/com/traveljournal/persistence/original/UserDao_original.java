@@ -1,4 +1,5 @@
-package com.traveljournal.persistence;
+package com.traveljournal.persistence.original;
+
 
 import com.traveljournal.entity.User;
 import com.traveljournal.persistence.SessionFactoryProvider;
@@ -14,7 +15,7 @@ import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
 import java.util.List;
 
-public class UserDao {
+public class UserDao_original {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
@@ -31,7 +32,7 @@ public class UserDao {
 
     /**
      * update user
-     * @param user User to be updated
+     * @param user  User to be updated
      */
     public void update(User user) {
         Session session = sessionFactory.openSession();
@@ -43,14 +44,16 @@ public class UserDao {
 
     /**
      * insert a new user
-     * @param user User to be inserted
+     * @param user  User to be inserted
      */
     public int insert(User user) {
+        //int id = 0;
+        int id;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(user);
         transaction.commit();
-        int id = user.getId();
+        id = user.getId();
         session.close();
         return id;
     }
@@ -62,40 +65,45 @@ public class UserDao {
     public void delete(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.remove(session.contains(user) ? user : session.merge(user));
+        session.delete(user);
         transaction.commit();
         session.close();
     }
 
-    /** * Return a list of all users
+
+    /** Return a list of all users
+     *
      * @return All users
      */
     public List<User> getAll() {
+
         Session session = sessionFactory.openSession();
+
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
-        query.from(User.class);
-
-        List<User> users = session.createSelectionQuery(query).getResultList();
+        Root<User> root = query.from(User.class);
+        List<User> users = session.createSelectionQuery( query ).getResultList();
 
         logger.debug("The list of users " + users);
         session.close();
+
         return users;
     }
 
     /**
      * Get user by property (exact match)
+     * sample usage: getByPropertyEqual("lastname", "Curry")
      */
-    public List<User> getByPropertyEqual(String propertyName, Object value) {
+    public List<User> getByPropertyEqual(String propertyName, String value) {
         Session session = sessionFactory.openSession();
-        logger.debug("Searching for user with {} = {}", propertyName, value);
+
+        logger.debug("Searching for user with " + propertyName + " = " + value);
 
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
         query.select(root).where(builder.equal(root.get(propertyName), value));
-
-        List<User> users = session.createSelectionQuery(query).getResultList();
+        List<User> users = session.createSelectionQuery( query ).getResultList();
 
         session.close();
         return users;
@@ -103,10 +111,12 @@ public class UserDao {
 
     /**
      * Get user by property (like)
+     * sample usage: getByPropertyLike("lastname", "C")
      */
     public List<User> getByPropertyLike(String propertyName, String value) {
         Session session = sessionFactory.openSession();
-        logger.debug("Searching for user with {} like {}", propertyName, value);
+
+        logger.debug("Searching for user with {} = {}",  propertyName, value);
 
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
@@ -115,26 +125,9 @@ public class UserDao {
 
         query.where(builder.like(propertyPath, "%" + value + "%"));
 
-        List<User> users = session.createSelectionQuery(query).getResultList();
-
+        List<User> users = session.createQuery( query ).getResultList();
         session.close();
         return users;
     }
 
-    /**
-     * [추가] Cognito ID(sub)로 사용자 조회
-     * 새로운 DB 구조에서 필수적인 기능이라 추가했습니다.
-     */
-    public User getByCognitoId(String cognitoId) {
-        List<User> users = getByPropertyEqual("cognitoId", cognitoId);
-        return (users != null && !users.isEmpty()) ? users.get(0) : null;
-    }
-
-    /**
-     * [추가] UserName으로 단일 사용자 조회
-     */
-    public User getByUserName(String userName) {
-        List<User> users = getByPropertyEqual("userName", userName);
-        return (users != null && !users.isEmpty()) ? users.get(0) : null;
-    }
 }

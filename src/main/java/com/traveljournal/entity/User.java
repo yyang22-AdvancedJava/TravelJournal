@@ -3,63 +3,48 @@ package com.traveljournal.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A class to represent a user.
- *
- * @author pwaite
- */
 @Entity
-@Table(name = "user") // case sensitive!!
+@Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
-    @GenericGenerator(name = "native",strategy = "native")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "user_name")
+
+    @Column(name = "user_name", unique = true)
     private String userName;
+
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.EAGER)
+    @Column(name = "cognito_id", unique = true)
+    private String cognitoId;
 
-    /*** To have JSOn WORk ***/
-    @JsonManagedReference // "내가 관리 주체다"라고 선언
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<Journal> journals = new ArrayList<>();
 
+    public User() {}
 
-    /**
-     * Instantiates a new User.
-     */
-    public User() {
-    }
-
-    /**
-     * Instantiates a new User.
-     *
-     * @param firstName the first name
-     * @param lastName  the last name
-     * @param userName  the user name
-     * @param password  the password
-     */
-    public User(String firstName, String lastName, String userName, String password) {
+    public User(String firstName, String lastName, String userName, String password, String cognitoId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
+        this.cognitoId = cognitoId;
     }
 
     /**
-     * @param journal
+     * [추가된 핵심 메서드 1] 일기 추가 시 양방향 관계 설정
      */
     public void addJournal(Journal journal) {
         journals.add(journal);
@@ -67,131 +52,32 @@ public class User {
     }
 
     /**
-     * @param journal
+     * [추가된 핵심 메서드 2] 일기 삭제 시 양방향 관계 해제
+     * 이 메서드가 있어야 JournalDao에서 삭제할 때 하이버네이트 충돌이 나지 않습니다.
      */
     public void removeJournal(Journal journal) {
         journals.remove(journal);
         journal.setUser(null);
     }
 
-    /**
-     * Get journals
-     * @return journals Journals
-     */
-    public List<Journal> getJournals() {
-        return journals;
-    }
-
-    /**
-     * Sets journals
-     * @param journals Journals
-     */
-    public void setJournals(List<Journal> journals) {
-        this.journals = journals;
-    }
-
-    /**
-     * Gets first name.
-     *
-     * @return the first name
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-
-    /**
-     * Sets first name.
-     *
-     * @param firstName the first name
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * Gets last name.
-     *
-     * @return the last name
-     */
-    public String getLastName() {
-        return lastName;
-    }
-
-    /**
-     * Sets last name.
-     *
-     * @param lastName the last name
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    /**
-     * Gets user name.
-     *
-     * @return the user name
-     */
-    public String getUserName() {
-        return userName;
-    }
-
-    /**
-     * Sets user name.
-     *
-     * @param userName the user name
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    /**
-     * Gets a password
-     * @return password the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * Sets a possword
-     * @param password the password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * Gets id.
-     *
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Sets id.
-     *
-     * @param id the id
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
+    // Getter & Setter
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+    public String getUserName() { return userName; }
+    public void setUserName(String userName) { this.userName = userName; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getCognitoId() { return cognitoId; }
+    public void setCognitoId(String cognitoId) { this.cognitoId = cognitoId; }
+    public List<Journal> getJournals() { return journals; }
+    public void setJournals(List<Journal> journals) { this.journals = journals; }
 
     @Override
     public String toString() {
-        return "User{" +
-                ", id=" + id +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "User{" + "id=" + id + ", userName='" + userName + '\'' + ", cognitoId='" + cognitoId + '\'' + '}';
     }
-
-
-
-
 }

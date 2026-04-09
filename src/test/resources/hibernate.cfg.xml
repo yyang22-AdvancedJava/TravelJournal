@@ -18,6 +18,7 @@
 
         <mapping class="com.traveljournal.entity.User"/>
         <mapping class="com.traveljournal.entity.Journal"/>
+        <mapping class="com.traveljournal.entity.Location" />
 
     </session-factory>
 
