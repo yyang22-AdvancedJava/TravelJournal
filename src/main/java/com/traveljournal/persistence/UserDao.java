@@ -59,6 +59,7 @@ public class UserDao {
      * Delete a user
      * @param user User to be deleted
      */
+
     public void delete(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -66,6 +67,7 @@ public class UserDao {
         transaction.commit();
         session.close();
     }
+
 
     /** * Return a list of all users
      * @return All users

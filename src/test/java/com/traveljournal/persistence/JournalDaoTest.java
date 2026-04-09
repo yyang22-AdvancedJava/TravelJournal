@@ -88,6 +88,7 @@ class JournalDaoTest {
     /**
      * 삭제 테스트 (User 보존 검증 포함)
      */
+
     /*
     @Test
     void delete() {
@@ -107,24 +108,25 @@ class JournalDaoTest {
     }
     */
     @Test
-    void delete() { // 파라미터를 비워야 합니다.
-        // 1. 삭제할 데이터를 DB에서 먼저 가져옵니다 (ID가 4인 데이터라고 가정)
-        Journal journalToDelete = journalDao.getById(4);
-
-        // 가져온 데이터가 null이 아닌지 먼저 확인 (방어 코드)
-        assertNotNull(journalToDelete, "삭제할 저널이 존재하지 않습니다.");
-
-        int userId = journalToDelete.getUser().getId();
+    void delete() {
+        // 1. 전체 목록에서 하나를 가져와서 ID를 확보 (고정 ID 4번은 위험함)
+        List<Journal> allJournals = journalDao.getAll();
+        assertFalse(allJournals.isEmpty(), "테스트할 데이터가 없습니다.");
+        Journal journal = allJournals.get(0);
+        int targetId = journal.getId();
+        int userId = journal.getUser().getId();
 
         // 2. 삭제 실행
-        journalDao.delete(journalToDelete);
+        journalDao.delete(journal);
 
-        // 3. 검증
-        assertNull(journalDao.getById(4), "저널이 삭제되지 않았습니다.");
+        // 3. 검증 (getById가 null을 반환해야 성공)
+        assertNull(journalDao.getById(targetId), "저널이 삭제되지 않았습니다.");
 
-        // 4. 유저가 살아있는지 확인
-        assertNotNull(userDao.getById(userId), "유저는 삭제되면 안 됩니다.");
+        // 4. 유저 생존 확인
+        UserDao userDao = new UserDao(); // UserDao가 필드에 없다면 생성
+        assertNotNull(userDao.getById(userId), "저널을 지워도 유저는 남아있어야 합니다.");
     }
+
 
     /**
      * 전체 목록 조회 테스트

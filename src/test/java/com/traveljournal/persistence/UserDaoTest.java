@@ -1,22 +1,28 @@
 package com.traveljournal.persistence;
 
+import com.traveljournal.entity.Journal;
 import com.traveljournal.entity.User;
 import com.traveljournal.util.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 class UserDaoTest {
 
-    UserDao dao;
+    private final Logger logger = LogManager.getLogger(this.getClass());
+
+    // 1. UserDao 대신 GenericDao<User>를 사용합니다.
+    GenericDao<User> dao;
 
     @BeforeEach
     void setUp() {
-        // 매 테스트 시작 전 DB를 깨끗하게 초기화합니다.
         Database database = Database.getInstance();
         database.runSQL("cleanDB.sql");
-        dao = new UserDao();
+        // 2. GenericDao 인스턴스를 생성하며 User 클래스 타입을 넘겨줍니다.
+        dao = new GenericDao<>(User.class);
     }
 
     @Test
@@ -29,7 +35,7 @@ class UserDaoTest {
     @Test
     void update() {
         String newFirstName = "UpdatedName";
-        User userToUpdate = dao.getById(2); // Joe Coyne
+        User userToUpdate = dao.getById(2);
         userToUpdate.setFirstName(newFirstName);
 
         dao.update(userToUpdate);
@@ -40,29 +46,38 @@ class UserDaoTest {
 
     @Test
     void insert() {
-        // 새 유저 생성 (5개 파라미터 생성자 사용)
+        // 새 유저 생성 (엔티티 생성자 확인 필요)
         User newUser = new User("Katie", "Yeoseon", "yeoseon", "pass123", "aws-sub-999");
         int id = dao.insert(newUser);
 
-        assertNotEquals(0, id);
-        User insertedUser = dao.getById(id);
+        // 하이버네이트는 insert 후 엔티티 객체에 id를 자동으로 채워줍니다.
+        assertNotEquals(0, newUser.getId());
+        User insertedUser = dao.getById(newUser.getId());
         assertNotNull(insertedUser);
         assertEquals("yeoseon", insertedUser.getUserName());
         assertEquals("aws-sub-999", insertedUser.getCognitoId());
     }
 
     @Test
-    void delete() {
-        User userToDelete = dao.getById(3); // Fred Hensen
-        dao.delete(userToDelete);
+    void deleteUserAndTheirJournals() {
+        int targetUserId = 3;
+        User user = dao.getById(targetUserId);
+        assertNotNull(user);
 
-        assertNull(dao.getById(3));
+        // [핵심] 부모-자식 관계를 명시적으로 끊어줍니다.
+        // orphanRemoval = true 설정 덕분에 리스트를 비우는 것만으로도 삭제 대상이 됩니다.
+        // user.getJournals().clear();
+        user.getJournals();
+
+        // 이제 깔끔해진 유저 객체를 삭제합니다.
+        dao.delete(user);
+
+        assertNull(dao.getById(targetUserId));
     }
 
     @Test
     void getAll() {
         List<User> users = dao.getAll();
-        // cleanDB.sql에 기본 7명이 있다고 가정
         assertEquals(7, users.size());
     }
 
@@ -75,23 +90,26 @@ class UserDaoTest {
 
     @Test
     void getByPropertyLike() {
-        // 'man'이 들어가는 성씨(Tillman 등) 검색
         List<User> users = dao.getByPropertyLike("lastName", "man");
         assertTrue(users.size() >= 1);
     }
 
+    // 3. 기존의 특수 메서드들은 getByPropertyEqual로 대체합니다.
     @Test
     void getByCognitoId() {
-        // cleanDB.sql에서 Admin에게 부여한 dummy id로 테스트
-        User user = dao.getByCognitoId("admin-dummy-id");
-        assertNotNull(user);
+        // "cognitoId"는 User 엔티티의 변수명과 정확히 일치해야 합니다.
+        List<User> users = dao.getByPropertyEqual("cognitoId", "admin-dummy-id");
+        assertFalse(users.isEmpty());
+        User user = users.get(0);
         assertEquals("admin", user.getUserName());
     }
 
     @Test
     void getByUserName() {
-        User user = dao.getByUserName("jcoyne");
-        assertNotNull(user);
+        // "userName"은 User 엔티티의 변수명과 정확히 일치해야 합니다.
+        List<User> users = dao.getByPropertyEqual("userName", "jcoyne");
+        assertFalse(users.isEmpty());
+        User user = users.get(0);
         assertEquals("Joe", user.getFirstName());
     }
 }

@@ -56,6 +56,7 @@ public class JournalDao {
         return id;
     }
 
+    /*
     public void delete(Journal journal) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -87,6 +88,30 @@ public class JournalDao {
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             logger.error("Error deleting journal: ", e);
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+    */
+    public void delete(Journal journal) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            // 전달받은 객체의 ID로 세션에서 직접 조회 (가장 확실한 방법)
+            Journal journalToDelete = session.get(Journal.class, journal.getId());
+
+            if (journalToDelete != null) {
+                // 양방향 관계인 경우 부모의 리스트에서도 제거
+                if (journalToDelete.getUser() != null) {
+                    journalToDelete.getUser().getJournals().remove(journalToDelete);
+                }
+                session.remove(journalToDelete);
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
             throw e;
         } finally {
             session.close();

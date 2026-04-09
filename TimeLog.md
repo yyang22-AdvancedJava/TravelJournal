@@ -24,7 +24,7 @@
 | 3/6     | Week 6 - Peer Review                                                                                          | 1 hour      |
 | 3/11    | Week 9 - Exercise                                                                                             | 2 hours     |
 |         | Indie Project: Updating ERD, Project Plans and Feedback from Checkpoint 2                                     | 2 hours     |
-| 4/9     | Indie Project: Updated DB with adding location table, and set all entities, Daos, tests. Made all working     | 3 hours     |
+| 4/9     | Indie Project: Updated DB with adding location table, and set all entities, Daos, tests. Made all working     | 4.5 hours   |
 
 
 

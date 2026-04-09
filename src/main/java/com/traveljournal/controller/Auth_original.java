@@ -1,20 +1,19 @@
 package com.traveljournal.controller;
 
 
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.traveljournal.auth.*;
-import com.traveljournal.persistence.UserDao;
+import com.traveljournal.entity.User; // 유저 엔티티 임포트
+import com.traveljournal.persistence.GenericDao; // Dao 임포트
 import com.traveljournal.util.PropertiesLoader;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,19 +35,18 @@ import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Properties;
+import java.util.stream.Collectors;
+
 /*
 
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Properties;
 */
-import java.util.*;
-
-import java.util.stream.Collectors;
-
-
-import com.traveljournal.entity.User; // 유저 엔티티 임포트
-import com.traveljournal.persistence.GenericDao; // Dao 임포트
 
 
 @WebServlet(
@@ -59,7 +57,7 @@ import com.traveljournal.persistence.GenericDao; // Dao 임포트
  * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
  */
 
-public class Auth extends HttpServlet implements PropertiesLoader {
+public class Auth_original extends HttpServlet implements PropertiesLoader {
     Properties properties;
     String CLIENT_ID;
     String CLIENT_SECRET;
@@ -89,9 +87,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
-        // String userName = null;
+        String userName = null;
 
         if (authCode == null) {
+            //TODO forward to an error page or back to the login
             resp.sendRedirect("/index_cognito.jsp");
         } else {
             HttpRequest authRequest = buildAuthRequest(authCode);
@@ -119,9 +118,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                         .asString();
 
                 // 2. DB 확인 및 사용자 객체 가져오기 (추가된 핵심 로직)
-                // GenericDao<User> userDao = new GenericDao<>(User.class);
-                UserDao userDao = new UserDao(); // 기존에 생성해둔 UserDao 사용
-
+                GenericDao<User> userDao = new GenericDao<>(User.class);
                 List<User> users = userDao.getByPropertyEqual("userName", userEmail);
                 User currentUser;
 
@@ -134,7 +131,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 } else {
                     // 이미 있는 사용자면 DB에서 가져옴
                     currentUser = users.get(0);
-                    logger.info("Existing user logged in: " + currentUser.getUserName());
                 }
 
                 // 3. 세션에 사용자 엔티티 저장 (Key Point!)
@@ -143,10 +139,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
-                resp.sendRedirect("error.jsp");
+                //TODO forward to an error page
             } catch (InterruptedException e) {
                 logger.error("Error getting token from Cognito oauth url " + e.getMessage(), e);
-                resp.sendRedirect("error.jsp");
+                //TODO forward to an error page
             }
         }
         /*
