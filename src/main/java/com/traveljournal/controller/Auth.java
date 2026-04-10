@@ -113,9 +113,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
                 TokenResponse tokenResponse = getToken(authRequest);
 
-                // 1. 토큰에서 이메일 추출
+                // 1. 토큰에서 이메일 and sub(CognitoId) 추출
                 String userEmail = JWT.decode(tokenResponse.getIdToken())
                         .getClaim("email")
+                        .asString();
+                String cognitoSub = JWT.decode(tokenResponse.getIdToken())
+                        .getClaim("sub")
                         .asString();
 
                 // 2. DB 확인 및 사용자 객체 가져오기 (추가된 핵심 로직)
@@ -130,6 +133,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                     logger.info("New user. Registering: " + userEmail);
                     currentUser = new User();
                     currentUser.setUserName(userEmail);
+                    // 이 부분을 추가하세요! (User 엔티티에 해당 필드가 있다고 가정)
+                    currentUser.setCognitoId(cognitoSub);
+
                     userDao.insert(currentUser);
                 } else {
                     // 이미 있는 사용자면 DB에서 가져옴
