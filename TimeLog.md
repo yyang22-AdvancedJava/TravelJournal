@@ -25,6 +25,7 @@
 | 3/11    | Week 9 - Exercise                                                                                             | 2 hours     |
 |         | Indie Project: Updating ERD, Project Plans and Feedback from Checkpoint 2                                     | 2 hours     |
 | 4/9     | Indie Project: Updated DB with adding location table, and set all entities, Daos, tests. Made all working     | 4.5 hours   |
+| 4/10    | Indie Project: Cognito information is added correctly Check                                                       | 1 hour     |
 
 
 
