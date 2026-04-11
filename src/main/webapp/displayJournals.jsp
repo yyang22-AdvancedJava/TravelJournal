@@ -1,94 +1,86 @@
-<%--
-<%@include file="taglib.jsp"%>
-<c:set var="title" value="My Journals" />
-&lt;%&ndash;<%@include file="head.jsp"%>&ndash;%&gt;
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="taglib.jsp" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="activePage" value="main" scope="request" />
+
+<%-- 1. 현재 페이지가 'main'임을 선언 --%>
+<c:set var="activePage" value="main" scope="request" />
+
+<%-- 헤더 포함 --%>
 <c:import url="head.jsp" />
-<html>
-<body>
-<h3>Welcome ${userName}</h3>
-&lt;%&ndash;
 
-<c:if test="${not empty message}">
-    <div class="alert alert-info">
-            ${message}
-    </div>
-</c:if>
-&ndash;%&gt;
+<div class="container mt-5">
+    <c:forEach items="${journals}" var="journal">
 
-&lt;%&ndash;
-<div class="container">
-    <h2>User Display Exercise</h2>
-    <form action="searchUser" class="form-inline">
-        <div class="form-group">
-            <label for="searchTerm">Search</label>
-            <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Type last name to search">
-        </div>
-        <button type="submit" name="submit" value="search" class="btn btn-primary">Search</button>
-        <button type="submit" name="submit" value="ViewAll" class="btn btn-primary">View All Users / Edit User</button>
-    </form>
-</div>
-&ndash;%&gt;
+        <%-- 1. 날씨 텍스트 기반 색상 클래스 설정 --%>
+        <c:set var="w" value="${fn:toLowerCase(journal.weather)}" />
+        <c:set var="weatherClass" value="bg-weather-default" />
+        <c:choose>
+            <c:when test="${fn:contains(w, 'sun') || fn:contains(w, 'clear')}">
+                <c:set var="weatherClass" value="bg-weather-sunny" />
+            </c:when>
+            <c:when test="${fn:contains(w, 'cloud') || fn:contains(w, 'overcast')}">
+                <c:set var="weatherClass" value="bg-weather-clouds" />
+            </c:when>
+            <c:when test="${fn:contains(w, 'rain') || fn:contains(w, 'drizzle') || fn:contains(w, 'shower')}">
+                <c:set var="weatherClass" value="bg-weather-rain" />
+            </c:when>
+            <c:when test="${fn:contains(w, 'mist') || fn:contains(w, 'fog') || fn:contains(w, 'haze')}">
+                <c:set var="weatherClass" value="bg-weather-mist" />
+            </c:when>
+            <c:when test="${fn:contains(w, 'thunder') || fn:contains(w, 'storm')}">
+                <c:set var="weatherClass" value="bg-weather-storm" />
+            </c:when>
+            <c:when test="${fn:contains(w, 'snow') || fn:contains(w, 'ice')}">
+                <c:set var="weatherClass" value="bg-weather-snow" />
+            </c:when>
+        </c:choose>
 
-<c:forEach items="${journals}" var="journal">
-    <div class="card ms-3 mb-3 mt-3" style="width: 50rem; height: 15rem">
-        <div class="card-header">
-            <div class="d-flex align-items-baseline">
-                <h3 class="card-title text-start">${journal.title}</h3>
-                <h4 class="card-subtitle mb-2 text-body-secondary text-end ms-auto" >${journal.location}</h4>
+        <%-- 2. 저널 카드 --%>
+        <div class="journal-card ${weatherClass} shadow-sm mb-4" style="border-radius: 20px; padding: 1.5rem 2rem;">
+
+                <%-- 상단 영역: 제목, 위치/날씨, 버튼들 --%>
+            <div class="d-flex align-items-center mb-3">
+
+                    <%-- [왼쪽] 제목 --%>
+                <h3 class="journal-title mb-0 fw-bold text-dark me-auto">${journal.title}</h3>
+
+                    <%-- [오른쪽] 위치와 날씨 정보 --%>
+                <div class="d-flex align-items-center text-dark fw-bold me-4" style="font-size: 1rem; opacity: 0.8;">
+                        <%-- 도시 이름 출력 --%>
+                    <i class="bi bi-geo-alt-fill me-1"></i> ${journal.location.name}
+                    <span class="mx-2 text-dark-50">|</span>
+                        <%-- 날씨 출력 --%>
+                    <i class="bi bi-cloud-check-fill me-1"></i> ${journal.weather}
+                </div>
+
+                    <%-- [버튼 영역] 수정 및 삭제 --%>
+                <div class="d-flex align-items-center gap-3">
+                        <%-- 수정 버튼 (연필 아이콘) --%>
+                    <a href="editJournal?id=${journal.id}" class="text-primary" title="Edit">
+                        <i class="bi bi-pencil-square fs-3"></i>
+                    </a>
+
+                        <%-- 삭제 버튼 (쓰레기통 아이콘) --%>
+                    <form action="deleteJournal" method="post" style="display:inline; margin:0;">
+                        <input type="hidden" name="id" value="${journal.id}">
+                        <button type="submit" class="btn btn-link text-danger p-0"
+                                style="border:none; text-decoration: none;"
+                                onclick="return confirm('정말 삭제하시겠습니까?');">
+                            <i class="bi bi-trash3-fill fs-3"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="card-body">
-            <h4 class="card-subtitle mb-2 text-body-secondary text-end ms-auto" >${journal.weather}</h4>
-            <h4 class="card-text">${journal.content}</h4>
-&lt;%&ndash;
 
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-&ndash;%&gt;
+                <%-- 본문 영역 --%>
+            <div class="journal-body">
+                <p class="fs-5 text-dark mb-0" style="line-height: 1.6;">${journal.content}</p>
+            </div>
 
         </div>
-        <div class="text-end mb-3">
-            <form action="deleteJournal" method="post" style="display:inline">
-                <input type="hidden" name="id" value="${journal.id}">
-                <button type="submit" style="background:none; border:none; padding:0; outline:none; cursor:pointer;">
-                    <img src="img/trashbin.png" style="width: 50px">
-                </button>
-            </form>
-
-        </div>
-    </div>
-</c:forEach>
+    </c:forEach>
+</div>
 
 </body>
 </html>
---%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="taglib.jsp" %>
-
-<%--<h3 class="mb-4">Welcome, ${userName}</h3>--%>
-
-<c:forEach items="${journals}" var="journal" varStatus="status">
-    <%-- custom.css에 정의한 클래스를 사용하여 이미지 속 디자인을 재현 --%>
-    <div class="journal-card ${status.index % 2 == 0 ? 'bg-journal-gray' : 'bg-journal-mint'} shadow-sm">
-
-        <div class="d-flex align-items-baseline mb-3">
-            <h3 class="journal-title mb-0">${journal.title}</h3>
-            <h4 class="journal-city ms-auto">${journal.location}</h4>
-        </div>
-
-        <div class="journal-body">
-            <h5 class="text-secondary mb-2">${journal.weather}</h5>
-            <p class="fs-5">${journal.content}</p>
-        </div>
-
-        <div class="text-end">
-            <form action="deleteJournal" method="post" style="display:inline">
-                <input type="hidden" name="id" value="${journal.id}">
-                <button type="submit" style="background:none; border:none; padding:0; cursor:pointer;">
-                    <img src="img/trashbin.png" style="width: 45px" alt="Delete">
-                </button>
-            </form>
-        </div>
-    </div>
-</c:forEach>

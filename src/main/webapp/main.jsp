@@ -8,7 +8,9 @@
 
         <%-- 설명 --%>
         <p class="lead landing-lead-text mb-5">
-            Don't let your memories fade away. From the sunny streets of Madrid to the rainy nights in Seattle,
+            Don't let your memories fade away.
+            <br>
+            From the sunny streets of Madrid to the rainy nights in Seattle,
             log your travels with ease and revisit your favorite moments anytime, anywhere.
         </p>
 

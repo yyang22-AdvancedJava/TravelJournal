@@ -164,3 +164,19 @@ body {
 .add-journal-form label {
     color: #444;
 }
+
+/* 날씨별 배경색 클래스 */
+.bg-weather-sunny { background-color: #FFEB3B !important; }
+.bg-weather-clouds { background-color: #90A4AE !important; }
+.bg-weather-rain { background-color: #78909C !important; }
+.bg-weather-mist { background-color: #BDBDBD !important; }
+.bg-weather-snow { background-color: #CFD8DC !important; }
+.bg-weather-storm { background-color: #546E7A !important; }
+.bg-weather-default { background-color: #D1C4E9 !important; }
+
+/* 카드 내부 텍스트 가독성을 위한 설정 */
+.weather-card {
+    transition: transform 0.3s ease;
+    border: none;
+    border-radius: 15px;
+}

@@ -52,16 +52,34 @@ function changeBgByWeather(status) {
     body.style.transition = "background-color 0.8s ease";
     const s = status.toLowerCase();
 
-    // 날씨 키워드별 색상 매칭
+    // --- 진해진 색상 베리에이션 (날씨 전용) ---
+
     if (s.includes('sun') || s.includes('clear')) {
-        body.style.backgroundColor = "#e0f7fa"; // 맑음: 연하늘
-    } else if (s.includes('cloud') || s.includes('overcast') || s.includes('mist')) {
-        body.style.backgroundColor = "#f5f5f5"; // 구름/안개: 연회색
-    } else if (s.includes('rain') || s.includes('drizzle') || s.includes('shower')) {
-        body.style.backgroundColor = "#d1d9e6"; // 비: 블루그레이
-    } else if (s.includes('snow') || s.includes('ice')) {
-        body.style.backgroundColor = "#ffffff"; // 눈: 흰색
-    } else {
-        body.style.backgroundColor = "#F8F6FF"; // 기본: 연보라
+        // 맑음: 화사하고 진한 노랑
+        body.style.backgroundColor = "#FFEB3B";
+    }
+    else if (s.includes('cloud') || s.includes('overcast')) {
+        // 구름: 확실히 어두운 블루그레이
+        body.style.backgroundColor = "#90A4AE";
+    }
+    else if (s.includes('mist') || s.includes('fog') || s.includes('haze')) {
+        // 안개: 묵직한 중간 회색
+        body.style.backgroundColor = "#BDBDBD";
+    }
+    else if (s.includes('rain') || s.includes('drizzle') || s.includes('patchy rain') || s.includes('shower')) {
+        // 비: 분위기 있는 다크한 블루톤
+        body.style.backgroundColor = "#78909C";
+    }
+    else if (s.includes('thunder') || s.includes('storm')) {
+        // 폭풍: 강렬한 딥그레이
+        body.style.backgroundColor = "#546E7A";
+    }
+    else if (s.includes('snow') || s.includes('ice') || s.includes('sleet')) {
+        // 눈: 약간 푸른빛이 도는 밝은 회색
+        body.style.backgroundColor = "#CFD8DC";
+    }
+    else {
+        // 기본값: 선명한 연보라
+        body.style.backgroundColor = "#D1C4E9";
     }
 }
