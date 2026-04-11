@@ -1,23 +1,22 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="taglib.jsp" %>
+<div class="landing-wrapper">
+    <div class="container">
+        <%-- 제목 --%>
+        <h1 class="display-3 fw-bold mb-4">
+            Capture Every Moment <br>
+            <span class="text-highlight-purple">of Your Journey.</span>
+        </h1>
 
-<c:set var="activePage" value="main" />
-<c:set var="title" value="My Journals" />
-<%-- 상단 헤더와 메뉴를 불러옵니다 --%>
-<c:import url="header.jsp" />
+        <%-- 설명 --%>
+        <p class="lead landing-lead-text mb-5">
+            Don't let your memories fade away. From the sunny streets of Madrid to the rainy nights in Seattle,
+            log your travels with ease and revisit your favorite moments anytime, anywhere.
+        </p>
 
-<main class="container mt-4">
-    <div class="row">
-        <%-- 화면 중앙 왼쪽에 적절히 배치 (부트스트랩 그리드) --%>
-        <div class="col-md-10 col-lg-9">
-
-            <%-- 실제 저널 리스트가 출력되는 파일을 불러옵니다 --%>
-            <c:import url="displayJournals.jsp" />
-
+        <%-- 버튼 (이전 스타일 복구) --%>
+        <div>
+            <a href="logIn" class="btn-landing-auth">
+                Start Your Journal
+            </a>
         </div>
     </div>
-</main>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>

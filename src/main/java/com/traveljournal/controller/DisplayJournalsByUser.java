@@ -44,6 +44,6 @@ public class DisplayJournalsByUser extends HttpServlet {
         req.setAttribute("userName", currentUser.getUserName());
 
         // 5. main.jsp로 화면 전환 (forward)
-        req.getRequestDispatcher("/main.jsp").forward(req, resp);
+        req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }

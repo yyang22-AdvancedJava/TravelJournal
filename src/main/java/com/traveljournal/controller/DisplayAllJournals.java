@@ -37,7 +37,7 @@ public class DisplayAllJournals extends HttpServlet {
         req.setAttribute("journals", journalDao.getAll());
 
         //RequestDispatcher dispatcher = req.getRequestDispatcher("/displayJournals.jsp");
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/main.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
         dispatcher.forward(req, resp);
     }
 }

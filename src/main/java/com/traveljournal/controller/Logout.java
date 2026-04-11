@@ -24,6 +24,6 @@ public class Logout extends HttpServlet {
 
         // 3. 로그아웃 후 보여줄 페이지로 리다이렉트합니다.
         // 앱의 시작 페이지인 index_cognito.jsp로 보내는 것이 좋습니다.
-        resp.sendRedirect("index_cognito.jsp");
+        resp.sendRedirect("index.jsp");
     }
 }

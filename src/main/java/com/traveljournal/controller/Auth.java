@@ -147,7 +147,11 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 req.getSession().setAttribute("user", currentUser);
                 req.setAttribute("userName", userEmail); // 기존 유지
 
-                if (userEmail.equals(ADMIN_EMAIL)) {
+                // 하드코딩 피하기: 서버가 알고 있는 ADMIN_EMAIL과 현재 로그인한 유저 이메일 비교
+                boolean isAdmin = currentUser.getUserName().equals(ADMIN_EMAIL);
+                req.getSession().setAttribute("isAdmin", isAdmin);
+
+                if (isAdmin) {
                     logger.info("Admin 로그인 성공: " + userEmail);
                     resp.sendRedirect("displayAllJournals");
                 } else {
@@ -329,8 +333,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      */
     // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
     private void loadProperties() {
-        /*** To use the cognito signin page in header menu ***/
-        String SIGNIN_URL;
 
         try {
             properties = loadProperties("/cognito.properties");
@@ -341,19 +343,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             REDIRECT_URL = properties.getProperty("redirectURL");
             REGION = properties.getProperty("region");
             POOL_ID = properties.getProperty("poolId");
-
-            /*** To use the cognito signin page in header menu ***/
-            if (LOGIN_URL != null) {
-                SIGNIN_URL = LOGIN_URL
-                        + "?client_id=" + CLIENT_ID
-                        + "&response_type=code"
-                        + "&scope=email+openid+profile"
-                        + "&redirect_uri=" + REDIRECT_URL;
-
-                // 모든 JSP에서 ${signUpURL}로 쓸 수 있게 '서블릿 컨텍스트'에 저장
-                getServletContext().setAttribute("signInURL", SIGNIN_URL);
-                logger.info("Sign Up URL 생성 완료: " + SIGNIN_URL);
-            }
 
         } catch (IOException ioException) {
             logger.error("Cannot load properties..." + ioException.getMessage(), ioException);

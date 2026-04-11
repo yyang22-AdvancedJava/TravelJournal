@@ -66,7 +66,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="taglib.jsp" %>
 
-<h3 class="mb-4">Welcome, ${userName}</h3>
+<%--<h3 class="mb-4">Welcome, ${userName}</h3>--%>
 
 <c:forEach items="${journals}" var="journal" varStatus="status">
     <%-- custom.css에 정의한 클래스를 사용하여 이미지 속 디자인을 재현 --%>

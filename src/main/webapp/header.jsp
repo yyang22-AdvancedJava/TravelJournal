@@ -43,7 +43,8 @@
                 <%-- 2. 세션에 유저가 없을 때 (초기 화면 등): Sign up만 유지 --%>
                 <c:otherwise>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="${signInURL}">Sign In/UP</a>
+                        <%--// To go to Auth.java--%>
+                        <a class="nav-link text-dark" href="logIn">Sign In/UP</a>
                     </li>
                 </c:otherwise>
             </c:choose>
