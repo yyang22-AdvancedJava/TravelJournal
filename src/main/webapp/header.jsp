@@ -23,7 +23,8 @@
                 <a class="nav-link text-dark ${activePage == 'main' ? 'active-link' : ''}" href="displayJournalsByUser">Main</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark ${activePage == 'addJournal' ? 'active-link' : ''}" href="addJournal.jsp">Add a journal</a>
+                <%-- href를 .jsp가 없는 서블릿 주소로 변경하세요 --%>
+                <a class="nav-link text-dark ${activePage == 'add' ? 'active-link' : ''}" href="addJournal">Add a journal</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark ${activePage == 'cities' ? 'active-link' : ''}" href="#">View by cities</a>
@@ -36,7 +37,7 @@
                 <%-- 1. 세션에 유저가 있을 때: Logout 버튼 표시 --%>
                 <c:when test="${not empty sessionScope.user}">
                     <li class="nav-item">
-                        <span class="navbar-text me-3 fw-bold text-primary">${sessionScope.user.userName}님</span>
+                        <span class="navbar-text me-3 fw-bold text-primary">${sessionScope.user.userName}</span>
                         <a class="btn btn-outline-danger btn-sm fw-bold" href="logout">Log out</a>
                     </li>
                 </c:when>

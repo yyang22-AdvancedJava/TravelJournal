@@ -27,6 +27,7 @@
 | 4/9     | Indie Project: Updated DB with adding location table, and set all entities, Daos, tests. Made all working     | 4.5 hours   |
 | 4/10    | Indie Project: Cognito information is added correctly Check                                                   | 1 hour      |
 |         | Indie Project: Homepage (App) Design (Skeleton) / Session / Get Journals by Users                             | 3 hours     |
+|         | Indie Project: Add Journal Parts Done - Need revision later for Colors and Date                               | 2 hours     |
 
 
 

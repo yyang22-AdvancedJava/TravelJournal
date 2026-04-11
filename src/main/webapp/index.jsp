@@ -16,14 +16,14 @@
                     <%-- 관리자 여부 플래그 체크 (하드코딩 없음) --%>
                     <c:when test="${sessionScope.isAdmin}">
                         <h2 class="display-6 fw-bold text-highlight-purple">Admin Dashboard</h2>
-                        <p class="text-muted mb-5">Managing all user travel records.</p>
+                        <p class="text-muted mb-5 mt-5">Managing all user travel records.</p>
 <%--                        <c:import url="displayJournals.jsp" />--%>
                     </c:when>
 
                     <%-- 일반 유저일 때 --%>
                     <c:otherwise>
                         <h2 class="display-6 fw-bold">Welcome back, ${sessionScope.user.userName}!</h2>
-                        <p class="text-muted mb-5">Here are your travel memories.</p>
+                        <p class="text-muted mb-5 mt-5">Here are your travel memories.</p>
                         <%--                        <c:import url="displayJournals.jsp" />--%>
                     </c:otherwise>
                 </c:choose>
