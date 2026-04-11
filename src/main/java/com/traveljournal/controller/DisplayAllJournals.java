@@ -32,12 +32,12 @@ public class DisplayAllJournals extends HttpServlet {
         }
         */
         /*** NEw &**/
-
         JournalDao journalDao = new JournalDao();
 
         req.setAttribute("journals", journalDao.getAll());
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/displayJournals.jsp");
+        //RequestDispatcher dispatcher = req.getRequestDispatcher("/displayJournals.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/main.jsp");
         dispatcher.forward(req, resp);
     }
 }

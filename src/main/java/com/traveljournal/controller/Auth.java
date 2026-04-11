@@ -113,13 +113,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
                 TokenResponse tokenResponse = getToken(authRequest);
 
+                var decodedJWT = JWT.decode(tokenResponse.getIdToken());
+                String ADMIN_EMAIL = "yyang22@madisoncollege.edu" ;
+
                 // 1. 토큰에서 이메일 and sub(CognitoId) 추출
-                String userEmail = JWT.decode(tokenResponse.getIdToken())
-                        .getClaim("email")
-                        .asString();
-                String cognitoSub = JWT.decode(tokenResponse.getIdToken())
-                        .getClaim("sub")
-                        .asString();
+                String userEmail = decodedJWT.getClaim("email").asString();
+                String cognitoSub = decodedJWT.getClaim("sub").asString();
 
                 // 2. DB 확인 및 사용자 객체 가져오기 (추가된 핵심 로직)
                 // GenericDao<User> userDao = new GenericDao<>(User.class);
@@ -136,7 +135,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                     // 이 부분을 추가하세요! (User 엔티티에 해당 필드가 있다고 가정)
                     currentUser.setCognitoId(cognitoSub);
 
-                    userDao.insert(currentUser);
+                    int id = userDao.insert(currentUser);
+                    currentUser.setId(id);
                 } else {
                     // 이미 있는 사용자면 DB에서 가져옴
                     currentUser = users.get(0);
@@ -146,6 +146,16 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 // 3. 세션에 사용자 엔티티 저장 (Key Point!)
                 req.getSession().setAttribute("user", currentUser);
                 req.setAttribute("userName", userEmail); // 기존 유지
+
+                if (userEmail.equals(ADMIN_EMAIL)) {
+                    logger.info("Admin 로그인 성공: " + userEmail);
+                    resp.sendRedirect("displayAllJournals");
+                } else {
+                    logger.info("일반 유저 로그인 성공: " + userEmail);
+                    resp.sendRedirect("displayJournalsByUser");
+                }
+
+
 
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
@@ -177,7 +187,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         RequestDispatcher dispatcher = req.getRequestDispatcher("displayAllJournals");
         dispatcher.forward(req, resp);
          */
-        resp.sendRedirect("displayAllJournals");
+        // resp.sendRedirect("displayAllJournals");
     }
 
     /**
@@ -319,6 +329,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      */
     // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
     private void loadProperties() {
+        /*** To use the cognito signin page in header menu ***/
+        String SIGNIN_URL;
+
         try {
             properties = loadProperties("/cognito.properties");
             CLIENT_ID = properties.getProperty("client.id");
@@ -328,6 +341,20 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             REDIRECT_URL = properties.getProperty("redirectURL");
             REGION = properties.getProperty("region");
             POOL_ID = properties.getProperty("poolId");
+
+            /*** To use the cognito signin page in header menu ***/
+            if (LOGIN_URL != null) {
+                SIGNIN_URL = LOGIN_URL
+                        + "?client_id=" + CLIENT_ID
+                        + "&response_type=code"
+                        + "&scope=email+openid+profile"
+                        + "&redirect_uri=" + REDIRECT_URL;
+
+                // 모든 JSP에서 ${signUpURL}로 쓸 수 있게 '서블릿 컨텍스트'에 저장
+                getServletContext().setAttribute("signInURL", SIGNIN_URL);
+                logger.info("Sign Up URL 생성 완료: " + SIGNIN_URL);
+            }
+
         } catch (IOException ioException) {
             logger.error("Cannot load properties..." + ioException.getMessage(), ioException);
         } catch (Exception e) {
