@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Properties;
 
@@ -53,8 +55,10 @@ public class AddJournal extends HttpServlet {
         // 파라미터 수집
         String title = req.getParameter("title");
         String cityName = req.getParameter("city");
+        String journalDate = req.getParameter("date");
         String content = req.getParameter("content");
         String weather = req.getParameter("weather");
+
 
         JournalDao journalDao = new JournalDao();
         LocationDao locationDao = new LocationDao();
@@ -85,8 +89,25 @@ public class AddJournal extends HttpServlet {
             journal.setContent(content);
             journal.setWeather(weather != null && !weather.isEmpty() ? weather : "Unknown");
 
+            LocalDateTime createdDateTime;
+            // LocalTime currentTime = LocalTime.now();
             LocalDateTime now = LocalDateTime.now();
-            journal.setCreatedAt(now);
+
+            // createdDateTime = LocalDate.parse(journalDate).atTime(currentTime);
+            try {
+                if (journalDate != null && !journalDate.isEmpty()) {
+                    // 날짜가 정상적으로 넘어왔을 때
+                    createdDateTime = LocalDate.parse(journalDate).atTime(LocalTime.now());
+                } else {
+                    // 날짜가 없으면 현재 시간으로 세팅
+                    createdDateTime = LocalDateTime.now();
+                }
+            } catch (Exception e) {
+                logger.error("날짜 파싱 에러: " + journalDate, e);
+                createdDateTime = LocalDateTime.now(); // 에러 나면 현재 시간으로 강제 고정
+            }
+
+            journal.setCreatedAt(createdDateTime);
             journal.setUpdatedAt(now);
 
             journalDao.insert(journal);

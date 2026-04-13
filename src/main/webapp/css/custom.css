@@ -1,5 +1,5 @@
 /* ==========================================
-   1. 기본 레이아웃 및 공통 스타일
+   0. Layout & Global Styles (기본 레이아웃)
    ========================================== */
 body {
     background-color: #E0D7FF; /* 전체 배경 연보라색 */
@@ -8,15 +8,68 @@ body {
     padding: 0;
 }
 
-/* 보라색 테두리 박스 (헤더, 네비게이션용) */
-.custom-purple-border {
-    border: 3px solid #9B7DFF !important;
-    border-radius: 12px;
-    background-color: white;
+.text-center {
+    text-align: center !important;
+}
+
+.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 /* ==========================================
-   2. 저널 카드 스타일 (로그인 후 화면)
+   1. Header & Navigation (헤더 및 메뉴)
+   ========================================== */
+header h1.display-5 {
+    font-size: 3rem !important; /* 모든 페이지에서 크기 고정 */
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+/* 보라색 테두리 박스 (헤더, 네비게이션용 공통) */
+.custom-purple-border {
+    max-width: 1140px; /* Bootstrap 컨테이너 폭에 맞춤 */
+    border: 3px solid #9B7DFF !important;
+    border-radius: 12px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 선택된 메뉴 스타일 */
+.nav-link.active-link {
+    color: #673AB7 !important;
+    font-weight: bold !important;
+    border-bottom: 3px solid #673AB7;
+    padding-bottom: 5px;
+}
+
+.nav-link:hover {
+    color: #673AB7;
+}
+
+/* ==========================================
+   2. Common Input Styles (입력창 공통)
+   ========================================== */
+/* Add/Edit 모든 페이지의 input, textarea 통합 스타일 */
+.custom-input {
+    border: 3px solid #9B7DFF !important; /* 굵은 보라색 테두리 */
+    border-radius: 12px !important;
+    background-color: #F8F6FF !important; /* 연보라빛 배경 */
+    padding: 12px 18px;
+    font-size: 1.1rem;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.custom-input:focus {
+    box-shadow: 0 0 12px rgba(155, 125, 255, 0.4) !important;
+    border-color: #7d5fff !important;
+    outline: none;
+}
+
+/* ==========================================
+   3. Journal Cards (메인 저널 리스트)
    ========================================== */
 .journal-card {
     border-radius: 15px;
@@ -31,13 +84,11 @@ body {
     transform: translateY(-5px);
 }
 
-/* 회색 카드 */
 .bg-journal-gray {
     background-color: #D9D9D9;
     border-color: #BDBDBD;
 }
 
-/* 민트색 카드 */
 .bg-journal-mint {
     background-color: #C6FFF7;
     border-color: #72E8D8;
@@ -54,13 +105,68 @@ body {
 }
 
 /* ==========================================
-   3. 메인 랜딩 페이지 스타일 (Main.jsp)
+   4. Buttons (버튼 스타일)
    ========================================== */
+/* Save 버튼 (Add Journal) */
+.btn-save {
+    background-color: white;
+    color: black;
+    border: 4px solid #888;
+    border-radius: 12px;
+    padding: 10px 45px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
-/* 쏠림 방지를 위한 전체 중앙 정렬 컨테이너 */
+.btn-save:hover {
+    background-color: #eee;
+    border-color: #555;
+    transform: scale(1.03);
+}
+
+/* Update 버튼 (Edit Journal) */
+.btn-update {
+    border-radius: 15px;
+    background-color: #673AB7;
+    border: none;
+    color: white;
+    padding: 1rem 3rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-update:hover {
+    background-color: #512DA8;
+    color: white;
+}
+
+/* Cancel 버튼 (Edit Journal) */
+.btn-cancel {
+    border-radius: 15px;
+    border: 1px solid #6c757d;
+    color: #6c757d;
+    padding: 1rem 3rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* ==========================================
+   5. Landing Page (Main.jsp)
+   ========================================== */
 .landing-wrapper {
     width: 100%;
-    min-height: 60vh; /* 화면 높이에 맞춰 적절히 배치 */
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,12 +175,10 @@ body {
     padding: 80px 0;
 }
 
-/* 제목 강조 컬러 */
 .text-highlight-purple {
     color: #9B7DFF;
 }
 
-/* 설명 문구 가로폭 제한 및 중앙 정렬 */
 .landing-lead-text {
     max-width: 750px;
     margin-left: auto !important;
@@ -83,10 +187,9 @@ body {
     line-height: 1.6;
 }
 
-/* [중요] Start Your Journal 버튼 (강조된 이전 스타일) */
 .btn-landing-auth {
-    background-color: #9B7DFF; /* 보라색 배경 */
-    color: white !important;   /* 흰색 글자 */
+    background-color: #9B7DFF;
+    color: white !important;
     border: none;
     border-radius: 12px;
     padding: 18px 60px;
@@ -100,81 +203,32 @@ body {
 }
 
 .btn-landing-auth:hover {
-    background-color: #7d5fff; /* 조금 더 진한 보라색 */
+    background-color: #7d5fff;
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(155, 125, 255, 0.6);
-    color: white !important;
 }
 
 /* ==========================================
-   4. 기타 유틸리티
+   6. Special Page Elements (특수 요소)
    ========================================== */
-.text-center {
-    text-align: center !important;
+.edit-card {
+    border-radius: 25px;
+    background-color: #f8f9fa;
 }
 
-.mx-auto {
-    margin-left: auto !important;
-    margin-right: auto !important;
+.edit-title {
+    color: #673AB7;
 }
 
-/* ==========================================
-   5. Add Journal 페이지 전용 스타일
-   ========================================== */
-
-/* 모든 입력창(input, textarea) 커스텀 */
-.custom-input {
-    border: 3px solid #9B7DFF !important; /* 이미지 특유의 굵은 보라색 테두리 */
-    border-radius: 12px !important;     /* 둥근 모서리 */
-    background-color: #F8F6FF !important; /* 살짝 연보라빛 도는 배경색 */
-    padding: 12px 18px;
-    font-size: 1.1rem;
-    color: #333;
-    transition: all 0.2s ease;
-}
-
-/* 입력창 포커스 시 은은한 그림자 효과 */
-.custom-input:focus {
-    box-shadow: 0 0 12px rgba(155, 125, 255, 0.4) !important;
-    border-color: #7d5fff !important; /* 조금 더 진한 보라색 */
-    outline: none;
-}
-
-/* Save 버튼: 이미지 하단 오른쪽 회색 테두리 스타일 */
-.btn-save {
-    background-color: white;
-    color: black;
-    border: 4px solid #888; /* 이미지 특유의 짙은 회색 테두리 */
-    border-radius: 12px;
-    padding: 10px 45px;
-    font-size: 1.3rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-/* Save 버튼 호버 효과 */
-.btn-save:hover {
-    background-color: #eee; /* 살짝 회색 배경 */
-    border-color: #555;     /* 테두리 더 진하게 */
-    transform: scale(1.03); /* 아주 살짝 커지는 효과 */
-}
-
-/* 라벨 색상 조정 */
-.add-journal-form label {
-    color: #444;
-}
-
-/* 날씨별 배경색 클래스 */
-.bg-weather-sunny { background-color: #FFEB3B !important; }
+/* 날씨 배경색 */
+.bg-weather-sunny  { background-color: #FFEB3B !important; }
 .bg-weather-clouds { background-color: #90A4AE !important; }
-.bg-weather-rain { background-color: #78909C !important; }
-.bg-weather-mist { background-color: #BDBDBD !important; }
-.bg-weather-snow { background-color: #CFD8DC !important; }
-.bg-weather-storm { background-color: #546E7A !important; }
+.bg-weather-rain   { background-color: #78909C !important; }
+.bg-weather-mist   { background-color: #BDBDBD !important; }
+.bg-weather-snow   { background-color: #CFD8DC !important; }
+.bg-weather-storm  { background-color: #546E7A !important; }
 .bg-weather-default { background-color: #D1C4E9 !important; }
 
-/* 카드 내부 텍스트 가독성을 위한 설정 */
 .weather-card {
     transition: transform 0.3s ease;
     border: none;

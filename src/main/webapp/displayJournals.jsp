@@ -66,7 +66,7 @@
                         <input type="hidden" name="id" value="${journal.id}">
                         <button type="submit" class="btn btn-link text-danger p-0"
                                 style="border:none; text-decoration: none;"
-                                onclick="return confirm('정말 삭제하시겠습니까?');">
+                                onclick="return confirm('Are you sure you want to delete this');">
                             <i class="bi bi-trash3-fill fs-3"></i>
                         </button>
                     </form>

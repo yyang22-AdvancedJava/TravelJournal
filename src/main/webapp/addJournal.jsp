@@ -2,8 +2,7 @@
 <%@ include file="taglib.jsp" %>
 
 <%-- 네비게이션 바 및 제목 설정 --%>
-<c:set var="activePage" value="add" />
-<c:set var="title" value="Add a Journal" />
+<c:set var="activePage" value="add" scope="request"/>
 
 <c:import url="header.jsp" />
 
@@ -11,7 +10,7 @@
   <div class="row justify-content-center">
     <div class="col-md-10 col-lg-8">
 
-      <h2 class="text-center mb-5 fw-bold display-5">Add a Journal</h2>
+      <h2 class="text-center mb-5 fw-bold display-6">Add a Journal</h2>
 
       <%--
            [중요] API 설정을 담은 데이터 존
@@ -70,7 +69,7 @@
 <%-- 스크립트 로드 --%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <%-- 분리한 자바스크립트 파일 --%>
-<script src="${pageContext.request.contextPath}/js/findWeather.js"></script>
+<script src="${pageContext.request.contextPath}/js/addJournal.js"></script>
 
 </body>
 </html>

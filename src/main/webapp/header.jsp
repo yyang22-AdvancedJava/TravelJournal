@@ -13,10 +13,11 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/custom.css">
 </head>
 <body>
-<div class="container py-4">
+<div class="container">
     <header class="custom-purple-border p-4 text-center mb-3 shadow-sm">
         <h1 class="display-5 fw-bold text-dark">Travel Journal</h1>
     </header>
+</div>
 
     <nav class="custom-purple-border mb-5 shadow-sm bg-white">
         <ul class="nav justify-content-around py-2 align-items-center">
@@ -25,7 +26,19 @@
                 <%-- 1. 세션에 유저가 있을 때: 모든 메뉴와 Logout 버튼 표시 --%>
                 <c:when test="${not empty sessionScope.user}">
                     <li class="nav-item">
-                        <a class="nav-link text-dark ${activePage == 'main' ? 'active-link' : ''}" href="displayJournalsByUser">Main</a>
+                        <c:choose>
+                            <%-- 1. 관리자일 때: 모든 유저의 저널을 관리하는 서블릿으로 연결 --%>
+                            <c:when test="${sessionScope.isAdmin}">
+                                <a class="nav-link text-dark ${activePage == 'main' ? 'active-link' : ''}"
+                                   href="displayAllJournals">Main</a>
+                            </c:when>
+
+                            <%-- 2. 일반 유저일 때: 본인의 저널만 조회하는 서블릿으로 연결 --%>
+                            <c:otherwise>
+                                <a class="nav-link text-dark ${activePage == 'main' ? 'active-link' : ''}"
+                                   href="displayJournalsByUser">Main</a>
+                            </c:otherwise>
+                        </c:choose>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark ${activePage == 'add' ? 'active-link' : ''}" href="addJournal">Add a journal</a>
