@@ -1,34 +1,41 @@
 /* ==========================================
    0. Layout & Global Styles (기본 레이아웃)
    ========================================== */
+/* 구글 폰트 (Nanum Gothic Eco) 가져오기 */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Eco:wght@400;700;800&display=swap');
+
 body {
     background-color: #E0D7FF; /* 전체 배경 연보라색 */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* 폰트 적용: Nanum Gothic Eco를 최우선으로, 없으면 시스템 폰트 */
+    font-family: 'Nanum Gothic Eco', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     margin: 0;
     padding: 0;
 }
 
-.text-center {
-    text-align: center !important;
-}
+.text-center { text-align: center !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
 
-.mx-auto {
-    margin-left: auto !important;
-    margin-right: auto !important;
+/* 제목 스타일 - 폰트 굵기 조정 */
+h2 {
+    font-size: 2.5rem !important;
+    font-weight: 800 !important;
+    color: #673AB7 !important;
+    margin-bottom: 2rem !important;
 }
 
 /* ==========================================
    1. Header & Navigation (헤더 및 메뉴)
    ========================================== */
 header h1.display-5 {
-    font-size: 3rem !important; /* 모든 페이지에서 크기 고정 */
+    font-size: 3rem !important;
+    font-weight: 800 !important;
     letter-spacing: -1px;
     margin: 0;
 }
 
 /* 보라색 테두리 박스 (헤더, 네비게이션용 공통) */
 .custom-purple-border {
-    max-width: 1140px; /* Bootstrap 컨테이너 폭에 맞춤 */
+    max-width: 1140px;
     border: 3px solid #9B7DFF !important;
     border-radius: 12px;
     background-color: white;
@@ -44,18 +51,15 @@ header h1.display-5 {
     padding-bottom: 5px;
 }
 
-.nav-link:hover {
-    color: #673AB7;
-}
+.nav-link:hover { color: #673AB7; }
 
 /* ==========================================
    2. Common Input Styles (입력창 공통)
    ========================================== */
-/* Add/Edit 모든 페이지의 input, textarea 통합 스타일 */
 .custom-input {
-    border: 3px solid #9B7DFF !important; /* 굵은 보라색 테두리 */
+    border: 3px solid #9B7DFF !important;
     border-radius: 12px !important;
-    background-color: #F8F6FF !important; /* 연보라빛 배경 */
+    background-color: #F8F6FF !important;
     padding: 12px 18px;
     font-size: 1.1rem;
     color: #333;
@@ -80,34 +84,17 @@ header h1.display-5 {
     transition: transform 0.2s;
 }
 
-.journal-card:hover {
-    transform: translateY(-5px);
-}
+.journal-card:hover { transform: translateY(-5px); }
 
-.bg-journal-gray {
-    background-color: #D9D9D9;
-    border-color: #BDBDBD;
-}
+.bg-journal-gray { background-color: #D9D9D9; border-color: #BDBDBD; }
+.bg-journal-mint { background-color: #C6FFF7; border-color: #72E8D8; }
 
-.bg-journal-mint {
-    background-color: #C6FFF7;
-    border-color: #72E8D8;
-}
-
-.journal-title {
-    font-weight: bold;
-    font-size: 1.25rem;
-}
-
-.journal-city {
-    font-size: 1.1rem;
-    color: #555;
-}
+.journal-title { font-weight: bold; font-size: 1.25rem; }
+.journal-city { font-size: 1.1rem; color: #555; }
 
 /* ==========================================
    4. Buttons (버튼 스타일)
    ========================================== */
-/* Save 버튼 (Add Journal) */
 .btn-save {
     background-color: white;
     color: black;
@@ -126,7 +113,6 @@ header h1.display-5 {
     transform: scale(1.03);
 }
 
-/* Update 버튼 (Edit Journal) */
 .btn-update {
     border-radius: 15px;
     background-color: #673AB7;
@@ -138,12 +124,8 @@ header h1.display-5 {
     transition: background-color 0.3s ease;
 }
 
-.btn-update:hover {
-    background-color: #512DA8;
-    color: white;
-}
+.btn-update:hover { background-color: #512DA8; color: white; }
 
-/* Cancel 버튼 (Edit Journal) */
 .btn-cancel {
     border-radius: 15px;
     border: 1px solid #6c757d;
@@ -156,10 +138,7 @@ header h1.display-5 {
     transition: all 0.3s ease;
 }
 
-.btn-cancel:hover {
-    background-color: #6c757d;
-    color: white;
-}
+.btn-cancel:hover { background-color: #6c757d; color: white; }
 
 /* ==========================================
    5. Landing Page (Main.jsp)
@@ -175,9 +154,7 @@ header h1.display-5 {
     padding: 80px 0;
 }
 
-.text-highlight-purple {
-    color: #9B7DFF;
-}
+.text-highlight-purple { color: #9B7DFF; }
 
 .landing-lead-text {
     max-width: 750px;
@@ -211,14 +188,8 @@ header h1.display-5 {
 /* ==========================================
    6. Special Page Elements (특수 요소)
    ========================================== */
-.edit-card {
-    border-radius: 25px;
-    background-color: #f8f9fa;
-}
-
-.edit-title {
-    color: #673AB7;
-}
+.edit-card { border-radius: 25px; background-color: #f8f9fa; }
+.edit-title { color: #673AB7; }
 
 /* 날씨 배경색 */
 .bg-weather-sunny  { background-color: #FFEB3B !important; }
@@ -233,4 +204,23 @@ header h1.display-5 {
     transition: transform 0.3s ease;
     border: none;
     border-radius: 15px;
+}
+
+
+
+/* [추가] 저널 카드 내 정보 영역 스타일 */
+.journal-info-box {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.journal-content-box {
+    line-height: 1.6;
+}
+
+.btn-delete-link {
+    border: none;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
 }

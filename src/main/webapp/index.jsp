@@ -1,6 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="taglib.jsp" %>
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <c:import url="head.jsp" />
+</head>
+
 <c:set var="activePage" value="main" scope="request" />
 <c:set var="title" value="My Journals" />
 <%-- 상단 헤더와 메뉴를 불러옵니다 --%>

@@ -1,5 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="taglib.jsp" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <c:import url="head.jsp" />
+</head>
+<body>
 
 <c:set var="activePage" value="main" scope="request" />
 <c:import url="header.jsp" />
@@ -65,8 +71,8 @@
         <div class="row mb-4">
           <label for="content" class="col-sm-3 col-form-label fw-bold fs-5 text-dark">Content</label>
           <div class="col-sm-9">
-                        <textarea name="content" id="content" class="form-control custom-input"
-                                  rows="6" required>${journal.content}</textarea>
+            <textarea name="content" id="content" class="form-control custom-input"
+                      rows="6" required>${journal.content}</textarea>
           </div>
         </div>
 
