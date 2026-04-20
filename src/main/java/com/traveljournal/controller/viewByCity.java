@@ -1,6 +1,7 @@
 package com.traveljournal.controller; // 패키지 경로는 네 프로젝트에 맞게 확인해라
 
 import com.traveljournal.entity.Journal;
+import com.traveljournal.entity.User;
 import com.traveljournal.persistence.JournalDao;
 
 import javax.servlet.ServletException;
@@ -17,20 +18,31 @@ public class viewByCity extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String city = request.getParameter("city");
+        // 세션에서 유저 정보와 관리자 여부 가져오기
+        User user = (User) request.getSession().getAttribute("user");
+        Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
 
-        // 검색어가 있을 때만 조회
-        if (city != null && !city.trim().isEmpty()) {
-            // 네가 구현해둔 JournalDao의 getByLocationName 메서드 활용
-            JournalDao journalDao = new JournalDao();
-            List<Journal> journals = journalDao.getByLocationName(city);
-
-            // 결과를 request에 담기
-            request.setAttribute("journals", journals);
-            request.setAttribute("searchedCity", city); // 검색한 도시명도 보여주려면 필요함
+        if (user == null) {
+            response.sendRedirect("login.jsp");
+            return;
         }
 
-        // viewByCity.jsp로 포워딩
+        String city = request.getParameter("city");
+
+        if (city != null && !city.trim().isEmpty()) {
+            JournalDao journalDao = new JournalDao();
+            List<Journal> journals;
+
+            // 관리자면 전체 조회, 아니면 본인 것만 조회
+            if (isAdmin != null && isAdmin) {
+                journals = journalDao.getByLocationName(city);
+            } else {
+                journals = journalDao.getByLocationNameAndUser(city, user.getId());
+            }
+
+            request.setAttribute("journals", journals);
+        }
+
         request.getRequestDispatcher("viewByCity.jsp").forward(request, response);
     }
 }
