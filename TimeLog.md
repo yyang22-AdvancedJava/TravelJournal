@@ -29,7 +29,10 @@
 |         | Indie Project: Homepage (App) Design (Skeleton) / Session / Get Journals by Users                                       | 3 hours     |
 |         | Indie Project: Add Journal Parts Done - Need revision later for Colors and Date                                         | 1 hour      |
 |         | Indie Project: Updated Color. and DisplayJournals.jsp in the color associated with the weather"                         | 1 hour      |
-| 4/12    | Indie Project: Eidt Journal added and added date checking function in js. Need to check redirecting after cancel button | 2 hours     |
+| 4/12    | Indie Project: Edit Journal added and added date checking function in js. Need to check redirecting after cancel button | 2 hours     |
+| 4/19    | Indie Project: 1) Head, Header Design / View by City / View by Weather Worked                                           | 3 hours     |
+|         | Indie Project: 2) Showing all results by users worked                                                                   |             |
+|         | Indie Project: Next: Redirecting after 'Cancel' button should be fixed                                                  |             |
 
 
 
