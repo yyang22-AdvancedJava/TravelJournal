@@ -18,7 +18,7 @@
             <h2 class="text-center fw-bold mb-5">View by Weather</h2>
 
             <%-- 검색 폼 --%>
-            <form action="searchByWeather" method="get" class="row g-3 justify-content-center mb-5 align-items-center">
+            <form action="searchByWeather" method="get" class="row g-3 justify-content-center mb-2 align-items-center">
                 <div class="col-auto">
                     <input type="text" name="weather" id="weather" class="form-control custom-input" placeholder="Enter weather (e.g. Sunny)" required>
                 </div>
@@ -51,7 +51,14 @@
                         <div class="d-flex align-items-center mb-3">
                             <h3 class="journal-title mb-0 fw-bold text-dark me-auto">${journal.title}</h3>
                             <div class="d-flex align-items-center text-dark fw-bold me-4 journal-info-box">
-                                <i class="bi bi-calendar-event me-1"></i> ${journal.createdAt}
+                                    <%-- 관리자일 경우 작성자 이름 추가 표시 --%>
+                                <c:if test="${sessionScope.isAdmin}">
+                                    <span class="mx-2 text-dark-50">|</span>
+                                    <i class="bi bi-person-fill me-1"></i> ${journal.user.userName}
+                                    <span class="mx-2 text-dark-50">|</span>
+                                </c:if>
+
+                                <i class="bi bi-calendar-event me-1"></i> ${journal.createdAt.toLocalDate()}
                                 <span class="mx-2 text-dark-50">|</span>
                                 <i class="bi bi-geo-alt-fill me-1"></i> ${journal.location.name}
                                 <span class="mx-2 text-dark-50">|</span>

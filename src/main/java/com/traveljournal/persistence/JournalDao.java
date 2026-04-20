@@ -190,4 +190,44 @@ public class JournalDao {
         session.close();
         return journals;
     }
+
+    public List<Journal> getByLocationNameAndUser(String locationName, int userId) {
+        Session session = sessionFactory.openSession();
+        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Journal> query = builder.createQuery(Journal.class);
+        Root<Journal> root = query.from(Journal.class);
+
+        Join<Journal, Location> locationJoin = root.join("location");
+
+        // 조건 추가: 1. 도시 이름 일치 AND 2. 유저 ID 일치
+        query.select(root).where(
+                builder.and(
+                        builder.equal(locationJoin.get("name"), locationName),
+                        builder.equal(root.get("user").get("id"), userId)
+                )
+        );
+
+        List<Journal> journals = session.createSelectionQuery(query).getResultList();
+        session.close();
+        return journals;
+    }
+
+    public List<Journal> getByWeatherAndUser(String weather, int userId) {
+        Session session = sessionFactory.openSession();
+        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Journal> query = builder.createQuery(Journal.class);
+        Root<Journal> root = query.from(Journal.class);
+
+        // 조건: 1. 날씨 Like 검색 AND 2. 유저 ID 일치
+        query.select(root).where(
+                builder.and(
+                        builder.like(root.get("weather"), "%" + weather + "%"),
+                        builder.equal(root.get("user").get("id"), userId)
+                )
+        );
+
+        List<Journal> journals = session.createSelectionQuery(query).getResultList();
+        session.close();
+        return journals;
+    }
 }

@@ -31,7 +31,16 @@
 
                     <%-- 정보 (날짜, 위치, 날씨) --%>
                 <div class="d-flex align-items-center text-dark fw-bold me-4 journal-info-box">
-                    <i class="bi bi-calendar-event me-1"></i> ${journal.createdAt}
+                        <%-- 관리자 전용 작성자 표시 --%>
+                    <c:if test="${sessionScope.isAdmin}">
+                        <span class="mx-2 text-dark-50">|</span>
+                        <span class="badge bg-secondary">
+                            <i class="bi bi-person-fill me-1"></i> ${journal.user.userName}
+                        </span>
+                        <span class="mx-2 text-dark-50">|</span>
+                    </c:if>
+
+                    <i class="bi bi-calendar-event me-1"></i> ${journal.createdAt.toLocalDate()}
                     <span class="mx-2 text-dark-50">|</span>
                     <i class="bi bi-geo-alt-fill me-1"></i> ${journal.location.name}
                     <span class="mx-2 text-dark-50">|</span>
