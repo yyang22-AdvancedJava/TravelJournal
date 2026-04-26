@@ -81,9 +81,11 @@
           <button type="submit" class="btn btn-update shadow-sm">
             Update Journal
           </button>
-          <a href="displayJournalsByUser" class="btn btn-cancel shadow-sm">
+          <button type="button"
+                  class="btn btn-cancel shadow-sm me-3"
+                  onclick="window.history.back();">
             Cancel
-          </a>
+          </button>
         </div>
       </form>
     </div>

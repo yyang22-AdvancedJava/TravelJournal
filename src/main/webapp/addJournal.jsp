@@ -45,6 +45,8 @@
         <input type="hidden" name="weather" id="weatherValue">
         <div class="text-end mt-5 mb-5">
           <button type="submit" class="btn-save shadow">Save</button>
+          <a href="${pageContext.request.contextPath}/displayJournalsByUser"
+             class="btn-cancel shadow-sm me-3">Cancel</a>
         </div>
       </form>
     </div>

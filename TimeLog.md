@@ -33,6 +33,7 @@
 | 4/19    | Indie Project: 1) Head, Header Design / View by City / View by Weather Worked                                           | 3 hours     |
 |         | Indie Project: 2) Showing all results by users worked                                                                   |             |
 |         | Indie Project: Next: Redirecting after 'Cancel' button should be fixed                                                  |             |
+| 4/28    | Indie Project: Cancel Button is fixed to go back to the previous page wherever it came from using JavaScript            | 1 hour      |
 
 
 
