@@ -133,8 +133,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                     currentUser = new User();
                     currentUser.setUserName(userEmail);
                     // 이 부분을 추가하세요! (User 엔티티에 해당 필드가 있다고 가정)
-                    currentUser.setCognitoId(cognitoSub);
+                    currentUser.setCognitoId(cognitoSub); // Cognito에서 받은 고유 ID 저장
 
+                    // DAO를 통해 DB에 insert (이 단계에서 실제 데이터베이스에 행이 추가됨)
                     int id = userDao.insert(currentUser);
                     currentUser.setId(id);
                 } else {

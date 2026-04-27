@@ -1,6 +1,7 @@
 package com.traveljournal.controller;
 
 import com.traveljournal.entity.Journal;
+import com.traveljournal.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.traveljournal.persistence.JournalDao;
@@ -38,7 +39,18 @@ public class DeleteJournal extends HttpServlet {
             journalToDelete = dao.getById(id);
             dao.delete(journalToDelete);
 
-            resp.sendRedirect(req.getContextPath() + "/displayAllJournals");
+            // --- 여기서 핵심 수정 ---
+            // 세션에서 현재 유저의 관리자 여부를 가져옵니다.
+            Boolean isAdmin = (Boolean) req.getSession().getAttribute("isAdmin");
+
+            // 관리자면 전체 목록으로, 일반 유저면 본인 목록으로 분기합니다.
+            if (isAdmin != null && isAdmin) {
+                resp.sendRedirect(req.getContextPath() + "/displayAllJournals");
+            } else {
+                // 본인 것만 보기 페이지로 유저 ID와 함께 리다이렉트
+                User user = (User) req.getSession().getAttribute("user");
+                resp.sendRedirect(req.getContextPath() + "/displayJournalsByUser?userId=" + user.getId());
+            }
 
         } else {
             // 실패 시 에러 페이지나 메시지 처리
