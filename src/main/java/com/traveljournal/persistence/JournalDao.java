@@ -184,7 +184,9 @@ public class JournalDao {
 
         // Journal 엔티티의 location 필드와 조인
         Join<Journal, Location> locationJoin = root.join("location");
-        query.select(root).where(builder.equal(locationJoin.get("name"), locationName));
+        query.select(root).where(
+                builder.like(locationJoin.get("name"), "%" + locationName + "%")
+        );
 
         List<Journal> journals = session.createSelectionQuery(query).getResultList();
         session.close();
