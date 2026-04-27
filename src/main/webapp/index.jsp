@@ -28,7 +28,7 @@
 
                     <%-- 일반 유저일 때 --%>
                     <c:otherwise>
-                        <h2 class="display-6 fw-bold">Welcome back, ${sessionScope.user.userName}!</h2>
+                        <h2 class="display-6 fw-bold">Welcome, ${sessionScope.user.userName}!</h2>
                         <p class="text-muted mb-5 mt-5">Here are your travel memories.</p>
                         <%--                        <c:import url="displayJournals.jsp" />--%>
                     </c:otherwise>
