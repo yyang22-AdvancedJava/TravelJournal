@@ -12,37 +12,42 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/searchByCity")
-public class viewByCity extends HttpServlet {
+@WebServlet("/searchByWeather")
+public class ViewByWeather extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 세션에서 유저 정보와 관리자 여부 가져오기
+        // 1. 세션에서 유저 정보와 관리자 여부 가져오기
         User user = (User) request.getSession().getAttribute("user");
         Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
 
+        // 2. 로그인 체크
         if (user == null) {
             response.sendRedirect("login.jsp");
             return;
         }
 
-        String city = request.getParameter("city");
+        String weather = request.getParameter("weather");
 
-        if (city != null && !city.trim().isEmpty()) {
+        if (weather != null && !weather.trim().isEmpty()) {
             JournalDao journalDao = new JournalDao();
             List<Journal> journals;
 
-            // 관리자면 전체 조회, 아니면 본인 것만 조회
+            // 3. 관리자면 전체 조회, 일반 유저면 본인 일기만 조회
             if (isAdmin != null && isAdmin) {
-                journals = journalDao.getByLocationName(city);
+                // 관리자용: 전체 데이터에서 날씨 키워드 검색
+                journals = journalDao.getByPropertyLike("weather", weather);
             } else {
-                journals = journalDao.getByLocationNameAndUser(city, user.getId());
+                // 일반 유저용: 본인 ID로 필터링된 데이터에서 날씨 검색
+                journals = journalDao.getByWeatherAndUser(weather, user.getId());
             }
 
             request.setAttribute("journals", journals);
+            request.setAttribute("searchedWeather", weather);
         }
 
-        request.getRequestDispatcher("viewByCity.jsp").forward(request, response);
+        // 4. viewByWeather.jsp로 포워딩
+        request.getRequestDispatcher("viewByWeather.jsp").forward(request, response);
     }
 }

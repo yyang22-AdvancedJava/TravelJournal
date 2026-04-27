@@ -13,22 +13,34 @@
                 <li class="nav-item">
                     <c:choose>
                         <c:when test="${sessionScope.isAdmin}">
-                            <a class="nav-link text-dark ${activePage == 'main' ? 'active-link' : ''}" href="displayAllJournals">Main</a>
+                            <a class="nav-link text-dark ${activePage == 'main' ? 'active-link' : ''}"
+                               href="displayAllJournals">Main</a>
                         </c:when>
                         <c:otherwise>
-                            <a class="nav-link text-dark ${activePage == 'main' ? 'active-link' : ''}" href="displayJournalsByUser">Main</a>
+                            <a class="nav-link text-dark ${activePage == 'main' ? 'active-link' : ''}"
+                               href="displayJournalsByUser">Main</a>
                         </c:otherwise>
                     </c:choose>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark ${activePage == 'add' ? 'active-link' : ''}" href="addJournal">Add a journal</a>
+                    <a class="nav-link text-dark ${activePage == 'add' ? 'active-link' : ''}"
+                       href="addJournal">Add a journal</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark ${activePage == 'cities' ? 'active-link' : ''}" href="searchByCity">View by city</a>
+                    <a class="nav-link text-dark ${activePage == 'cities' ? 'active-link' : ''}"
+                       href="searchByCity">View by city</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark ${activePage == 'weather' ? 'active-link' : ''}" href="searchByWeather">View by weather</a>
+                    <a class="nav-link text-dark ${activePage == 'weather' ? 'active-link' : ''}"
+                       href="searchByWeather">View by weather</a>
                 </li>
+                <%-- When the admin is signed in --%>
+                <c:if test="${sessionScope.isAdmin == true}">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark ${activePage == 'viewByUser' ? 'active-link' : ''}"
+                           href="viewByUser">View by User</a>
+                    </li>
+                </c:if>
                 <li class="nav-item d-flex align-items-center">
                     <span class="navbar-text me-3 fw-bold text-primary">
                         <i class="bi bi-person-fill"></i> ${sessionScope.user.userName}

@@ -201,10 +201,7 @@ public class JournalDao {
 
         // 조건 추가: 1. 도시 이름 일치 AND 2. 유저 ID 일치
         query.select(root).where(
-                builder.and(
-                        builder.equal(locationJoin.get("name"), locationName),
-                        builder.equal(root.get("user").get("id"), userId)
-                )
+                builder.like(locationJoin.get("name"), "%" + locationName + "%")
         );
 
         List<Journal> journals = session.createSelectionQuery(query).getResultList();
@@ -224,6 +221,25 @@ public class JournalDao {
                         builder.like(root.get("weather"), "%" + weather + "%"),
                         builder.equal(root.get("user").get("id"), userId)
                 )
+        );
+
+        List<Journal> journals = session.createSelectionQuery(query).getResultList();
+        session.close();
+        return journals;
+    }
+
+    /**
+     * [관리자용] 특정 유저 이름(userName)으로 해당 유저의 모든 저널 조회
+     */
+    public List<Journal> getJournalsByUserName(String userName) {
+        Session session = sessionFactory.openSession();
+        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Journal> query = builder.createQuery(Journal.class);
+        Root<Journal> root = query.from(Journal.class);
+
+        // Journal과 User를 조인하여 userName 필드로 필터링
+        query.select(root).where(
+                builder.like(root.get("user").get("userName"), "%" + userName + "%")
         );
 
         List<Journal> journals = session.createSelectionQuery(query).getResultList();

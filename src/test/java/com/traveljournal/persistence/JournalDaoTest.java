@@ -166,4 +166,44 @@ class JournalDaoTest {
         assertFalse(journals.isEmpty());
         assertEquals("Paris", journals.get(0).getLocation().getName());
     }
+
+    @Test
+    void getByLocationNameAndUser() {
+
+        // 1. 유저 ID 2번(Joe Coyne)이 가진 'Paris' 지역 저널 조회
+        List<Journal> journals = journalDao.getByLocationNameAndUser("Amsterdam", 2);
+
+        // 2. 검증
+        assertFalse(journals.isEmpty());
+        for (Journal journal : journals) {
+            assertEquals("Amsterdam", journal.getLocation().getName());
+            assertEquals(2, journal.getUser().getId());
+        }
+
+    }
+
+    @Test
+    void getByWeatherAndUser() {
+        // 1. 유저 ID 1번(admin)이 가진 'Cold' 날씨 저널 조회
+        List<Journal> journals = journalDao.getByWeatherAndUser("Cold", 1);
+
+        // 2. 검증
+        assertFalse(journals.isEmpty());
+        for (Journal journal : journals) {
+            assertTrue(journal.getWeather().contains("Cold"));
+            assertEquals(1, journal.getUser().getId());
+        }
+    }
+
+    @Test
+    void getJournalsByUserName() {
+        // 1. 'admin'이라는 이름을 가진 유저의 모든 저널 조회
+        List<Journal> journals = journalDao.getJournalsByUserName("admin");
+
+        // 2. 검증
+        assertFalse(journals.isEmpty());
+        for (Journal journal : journals) {
+            assertEquals("admin", journal.getUser().getUserName());
+        }
+    }
 }
