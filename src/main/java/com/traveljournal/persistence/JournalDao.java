@@ -201,7 +201,9 @@ public class JournalDao {
 
         // 조건 추가: 1. 도시 이름 일치 AND 2. 유저 ID 일치
         query.select(root).where(
-                builder.like(locationJoin.get("name"), "%" + locationName + "%")
+                /*** TODO: It is not working? or Working? ***/
+                builder.like(locationJoin.get("name"), "%" + locationName + "%"),
+                builder.equal(root.get("user").get("id"), userId)
         );
 
         List<Journal> journals = session.createSelectionQuery(query).getResultList();
