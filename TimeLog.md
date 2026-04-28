@@ -38,6 +38,7 @@
 |         | Indie Project: Next: View By City - Admin - Like Search should work. It is not working now                               |             |
 | 4/27    | Indie Project: Admin - View By City made it work                                                                         | 10 mins     |
 |         | Indie Project: Test Files updated, Presentation Videos Taken                                                             | 8 hours     |
+|         | Indie Project: Next: 1) JavaDoc 2) Database Design 3) Project Plan 4) Screen Design - Need to Update                     |             |
 
 
 
