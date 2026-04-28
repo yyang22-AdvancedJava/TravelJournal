@@ -1,5 +1,6 @@
 package com.traveljournal.persistence;
 
+import com.traveljournal.entity.Journal;
 import com.traveljournal.entity.User;
 import com.traveljournal.persistence.SessionFactoryProvider;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -12,6 +13,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
@@ -63,7 +65,17 @@ public class UserDao {
     public void delete(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.remove(session.contains(user) ? user : session.merge(user));
+
+        // 1. 모든 저널의 관계를 끊음
+        for (Journal journal : new ArrayList<>(user.getJournals())) {
+            user.removeJournal(journal);
+        }
+        // 삭제 직전 딱 한 줄 추가
+        user.getJournals().clear();
+        // 이렇게 하면 orphanRemoval=true에 의해 Hibernate가 알아서 다 삭제 처리합니다.
+
+
+        session.remove(user);
         transaction.commit();
         session.close();
     }

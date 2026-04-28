@@ -72,4 +72,11 @@ public class Journal {
                 ", updatedAt=" + updatedAt +
                 '}';
     }
+
+    // Journal 엔티티에 관계 해제 메서드 추가
+    //Journal 클래스에 Location과의 관계를 정리하는 메서드를 만드세요
+    public void removeDependencies() {
+        this.user = null;
+        this.location = null; // Location과의 연결도 명시적으로 끊어줍니다.
+    }
 }

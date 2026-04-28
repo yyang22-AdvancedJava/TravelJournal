@@ -67,9 +67,9 @@ public class EditJournal extends HttpServlet {
         // 4. 저장 (update 수행)
         try {
             journalDao.update(journal); // 본인의 업데이트 메서드 호출
-            logger.info("저널 수정 완료: ID " + id);
+            logger.info("Journal Edit Success: ID " + id);
         } catch (Exception e) {
-            logger.error("저널 수정 중 오류 발생", e);
+            logger.error("There was an error while updating a journal", e);
         }
 
         // 5. 목록으로 돌아가기

@@ -14,7 +14,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +47,6 @@ import java.util.stream.Collectors;
 
 
 import com.traveljournal.entity.User; // 유저 엔티티 임포트
-import com.traveljournal.persistence.GenericDao; // Dao 임포트
 
 
 @WebServlet(
@@ -153,10 +151,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 req.getSession().setAttribute("isAdmin", isAdmin);
 
                 if (isAdmin) {
-                    logger.info("Admin 로그인 성공: " + userEmail);
+                    logger.info("Admin Login Success: " + userEmail);
                     resp.sendRedirect("displayAllJournals");
                 } else {
-                    logger.info("일반 유저 로그인 성공: " + userEmail);
+                    logger.info("Standard User Login Success: " + userEmail);
                     resp.sendRedirect("displayJournalsByUser");
                 }
 

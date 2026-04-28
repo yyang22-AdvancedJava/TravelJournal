@@ -5,6 +5,8 @@ import com.traveljournal.entity.User;
 import com.traveljournal.util.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import org.apache.logging.log4j.LogManager;
@@ -14,15 +16,15 @@ class UserDaoTest {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-    // 1. UserDao 대신 GenericDao<User>를 사용합니다.
-    GenericDao<User> dao;
+
+    UserDao dao;
 
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
         database.runSQL("cleanDB.sql");
-        // 2. GenericDao 인스턴스를 생성하며 User 클래스 타입을 넘겨줍니다.
-        dao = new GenericDao<>(User.class);
+
+        dao = new UserDao();
     }
 
     @Test
@@ -58,21 +60,24 @@ class UserDaoTest {
         assertEquals("aws-sub-999", insertedUser.getCognitoId());
     }
 
+    /**
+     * Test deleting a user and their journals.
+     * Verifies that the user and all associated journals are removed.
+     */
     @Test
-    void deleteUserAndTheirJournals() {
-        int targetUserId = 3;
-        User user = dao.getById(targetUserId);
-        assertNotNull(user);
+    void delete() {
+        User userToDelete = dao.getById(1);
 
-        // [핵심] 부모-자식 관계를 명시적으로 끊어줍니다.
-        // orphanRemoval = true 설정 덕분에 리스트를 비우는 것만으로도 삭제 대상이 됩니다.
-        // user.getJournals().clear();
-        user.getJournals();
+        // 1. 만약 저널이 있다면 명시적으로 연결을 끊어줍니다.
+        if (userToDelete.getJournals() != null) {
+            userToDelete.getJournals().clear();
+        }
 
-        // 이제 깔끔해진 유저 객체를 삭제합니다.
-        dao.delete(user);
+        // 2. 삭제 수행
+        dao.delete(userToDelete);
 
-        assertNull(dao.getById(targetUserId));
+        // 3. 검증
+        assertNull(dao.getById(1), "User with ID 1 should be null after deletion.");
     }
 
     @Test

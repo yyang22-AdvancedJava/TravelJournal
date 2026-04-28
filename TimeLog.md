@@ -33,10 +33,11 @@
 | 4/19    | Indie Project: 1) Head, Header Design / View by City / View by Weather Worked                                            | 3 hours     |
 |         | Indie Project: 2) Showing all results by users worked                                                                    |             |
 |         | Indie Project: Next: Redirecting after 'Cancel' button should be fixed                                                   |             |
-| 4/28    | Indie Project: Cancel Button is fixed to go back to the previous page wherever it came from using JavaScript             | 1 hour      |
+| 4/26    | Indie Project: Cancel Button is fixed to go back to the previous page wherever it came from using JavaScript             | 1 hour      |
 |         | Indie Project: JournalDaoTest edited by adding some tests for mor functions /  Admin - view by User controller/jsp added | 2 hour      |
 |         | Indie Project: Next: View By City - Admin - Like Search should work. It is not working now                               |             |
-| 4/29    | Indie Project: Admin - View By City made it work                                                                         | 10 mins     |
+| 4/27    | Indie Project: Admin - View By City made it work                                                                         | 10 mins     |
+|         | Indie Project: Test Files updated, Presentation Videos Taken                                                             | 8 hours     |
 
 
 
