@@ -86,18 +86,25 @@ Checkpoint 3 Due: AWS Deployment, JSP Data Display, Authentication
 <br>
 
 ## Week 12
-- [x] Designed the head and header sections.
-- [x] Created the 'View by City' and 'View by Weather' pages.
-- [x] Complete Homepage(App) Design (Skeleton) / Session / Get Journals by Users
-- [x] Add JSP file to display and edit journals
+- [x] Designe the head and header sections.
+- [x] Create the 'View by City' and 'View by Weather' pages.
+- [x] Display all journals based on the user in the session.
+- [x] Check and fix redirects and data loading for each button.
+- [x] Admin - view by User controller/jsp added
 
 <br>
 
-## Week 15
+## Week 14
+- [x] Enable 'View By City' feature for the Admin.
 - [ ] Implement Feedback from Week 14 review
-- [ ] Final Presentation
-- [ ] Create video, add video link to readme.md
-- [ ] Finalize all documentation
+- [x] Final Presentation
+- [x] Create video
+- [ ] Add video link to readme.md
+- [ ] Finalize all documentation 
+- [ ] 1) JavaDoc
+- [ ] 2) Database Design
+- [ ] 3) Project Plan
+- [ ] 4) Screen Design
 - [ ] Code quality check
 - [ ] Weekly journal entry
 
