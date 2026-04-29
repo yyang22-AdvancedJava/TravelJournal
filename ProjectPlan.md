@@ -69,7 +69,9 @@ Checkpoint 2 Due: Database, Hibernate DAO, Unit Testing, Log4J
 
 <br>
 
-## Week 9 (Start of the team project)
+## Week 9 - Week 12 (Team Project)
+
+## Week 13
 Checkpoint 3 Due: AWS Deployment, JSP Data Display, Authentication
 - [ ] JournalDao Update - displaying journals by cities
 - [ ] JournalDao Update - displaying journals by weather
