@@ -70,17 +70,27 @@ Checkpoint 2 Due: Database, Hibernate DAO, Unit Testing, Log4J
 <br>
 
 ## Week 9 - Week 12 (Team Project)
-
-## Week 13
 Checkpoint 3 Due: AWS Deployment, JSP Data Display, Authentication
-- [ ] JournalDao Update - displaying journals by cities
-- [ ] JournalDao Update - displaying journals by weather
-- [ ] Double-check all checkpoint 3 items are complete and visible in GitHub.
+- [x] JournalDao Update - displaying journals by cities
+- [x] JournalDao Update - displaying journals by weather
+- [x] Double-check all checkpoint 3 items are complete and visible in GitHub.
 
 <br>
 
-## Week 10
-- [ ] Cognito - TravelJournal: Automated User Registration (Integrate Cognito Database with TravelJournal)
+## Week 11
+- [x] Checkpoint 3 Correction: DB with adding location table, and set all entities, Daos, tests
+- [x] Cognito information is added correctly Check
+- [x] Complete Homepage(App) Design (Skeleton) / Session / Get Journals by Users
+- [x] Add JSP file to display and edit journals
+
+<br>
+
+## Week 12
+- [x] Designed the head and header sections.
+- [x] Created the 'View by City' and 'View by Weather' pages.
+- [x] Complete Homepage(App) Design (Skeleton) / Session / Get Journals by Users
+- [x] Add JSP file to display and edit journals
+
 <br>
 
 ## Week 15
