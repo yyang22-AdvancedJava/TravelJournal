@@ -1,22 +1,22 @@
 # Project Plan
 ## Week 2
-- [ ] Create project repository on GitHub
-- [ ] Create project structure in IntelliJ and push
-- [ ] Add link to list of indie projects in student repo.
+- [x] Create project repository on GitHub
+- [x] Create project structure in IntelliJ and push
+- [x] Add link to list of indie projects in student repo.
 - [x] Complete Problem Statement
 - [x] Write project plan
 - [x] Document user stories and select MVP stories
-- [ ] Confirm MVP stories meet Ent Java indie project objectives
-- [ ] Design screens - make sure all MVP user stories are covered
-- [ ] Weekly reflection/time log
+- [x] Confirm MVP stories meet Ent Java indie project objectives
+- [x] Design screens - make sure all MVP user stories are covered
+- [x] Weekly reflection/time log
 
 <br>
 
 ## Week 3
-- [ ] Research possible Web Services/APIs to use
-- [ ] List technologies, versions, and how they will be used
-- [ ] Triple-check for Checkpoint 1
-- [ ] Update journal/time log/reflection
+- [x] Research possible Web Services/APIs to use
+- [x] List technologies, versions, and how they will be used
+- [x] Triple-check for Checkpoint 1
+- [x] Update journal/time log/reflection
 - [x] First cut at database design (User, Journal tables)
 - [x] Create the dev version of the database
 - [x] Create Journal entity
@@ -31,10 +31,10 @@
 Focus: City Search & Journal Entity Implementation
 
 - [x] Create a class for the DB connection business
-- [ ] Create JSP for finding cities/weather
+- [ ] ~~Create JSP for finding cities/weather~~
 - [x] Create JSP for journal results
-- [ ] Create controller to route to search-city.jsp
-- [ ] Create controller to manage the work of finding a city
+- [ ] ~~Create controller to route to search-city.jsp~~
+- [ ] ~~Create controller to manage the work of finding a city~~
 - [x] Update weekly reflection
 
 <br>
@@ -65,7 +65,7 @@ Checkpoint 2 Due: Database, Hibernate DAO, Unit Testing, Log4J
 <br>
 
 ## Spring Break
-- [ ] Create all necesasry JSP files
+- [ ] ~~Create all necesasry JSP files~~
 
 <br>
 
