@@ -96,7 +96,7 @@ Checkpoint 3 Due: AWS Deployment, JSP Data Display, Authentication
 
 ## Week 14
 - [x] Enable 'View By City' feature for the Admin.
-- [ ] Implement Feedback from Week 14 review
+- [ ] Implement Feedback from Week 14 review & GenericDao Changes
 - [x] Final Presentation
 - [x] Create video
 - [ ] Add video link to readme.md
