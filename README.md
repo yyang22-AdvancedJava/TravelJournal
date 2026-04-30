@@ -8,35 +8,35 @@ The problem is that travel memories are more than just images; they are tied to 
 ## Project Technologies/Techniques
 
 * Security/Authentication
-  * **AWS Cognito**
+  * AWS Cognito
 * Database
-  * **MySQL 8.x** (Local development - *travel_journal* schema)
+  * MySQL 8.x (Local development - *travel_journal* schema)
 * ORM Framework
-  * **Hibernate 5.x / 6.x**
+  * Hibernate 5.x / 6.x
 * Dependency Management
-  * **Maven**
+  * Maven
 * Web Services consumed using Java
-  * **Weather API (weatherapi.com)** - for real-time weather data
+  * Weather API (weatherapi.com) - for real-time weather data
 * Front End & UI
-  * **Bootstrap 5**: Modern responsive design and UI components.
-  * **Vanilla JavaScript**: Implementation of client-side logic without external library dependencies.
-  * **CSS3 & HTML5**: Custom styling for enhanced user experience.
+  * Bootstrap 5: Modern responsive design and UI components.
+  * Vanilla JavaScript: Implementation of client-side logic without external library dependencies.
+  * CSS3 & HTML5: Custom styling for enhanced user experience.
 * Data Validation
-  * **Hibernate Validator** (Bean Validation API)
-  * **Bootstrap 5 form validation**
+  * Hibernate Validator (Bean Validation API)
+  * Bootstrap 5 form validation
 * Logging
-  * **Log4J2** (Console and File Appenders)
-  * **Debug level monitoring** and pattern layout configuration
+  * Log4J2 (Console and File Appenders)
+  * Debug level monitoring and pattern layout configuration
 * Tech explored as part of this work
-  * **AWS Cognito SDK for Java integration**
-  * **Hibernate Configuration**: XML-based session factory and property management.
-  * **Log4j2 Pattern Layout**: Customizing log formats for effective troubleshooting.
-  * **Building Clean Servlet Architecture**
+  * AWS Cognito SDK for Java integration
+  * Hibernate Configuration: XML-based session factory and property management.
+  * Log4j2 Pattern Layout: Customizing log formats for effective troubleshooting.
+  * Building Clean Servlet Architecture
 * Unit Testing
-  * **JUnit 5**: Core logic testing.
-  * **SoapUI**: API endpoint and JSON response verification.
+  * JUnit 5: Core logic testing.
+  * SoapUI: API endpoint and JSON response verification.
 * IDE
-  * **IntelliJ 2025.03**
+  * IntelliJ 2025.03
 
 
 ## Design
