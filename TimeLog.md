@@ -1,44 +1,47 @@
 # Time Log
 
-| Date    | Task                                                                                                                     | Hours       |
-|---------|--------------------------------------------------------------------------------------------------------------------------|-------------|
-| 1/8     | Week 1 Class & Exercise Completion                                                                                       | 5 hours     |
-| 1/9     | Challenge 1 & 2                                                                                                          | 2 hours     |
-| 1/9     | Challenge 1 & 2                                                                                                          | 2 hours     |
-| 1/24    | Week 2 Exericse & Challenge 3                                                                                            | 5-6 hours   |
-| 1/25    | Week 3 Exericse                                                                                                          | 5-6 hours   |
-| 1/27    | Devised an idea & Created a repo for Indie Project                                                                       | @ 1 hour    |
-| 1/28    | Created and Updated 1) README.md 2) UserStories.md 3) ProjectPlan.md 4) Screens.md 5) WeeklyReflection.md                | 4-5 hours   |
-| 1/30    | Week 4 Hibernate Class                                                                                                   | 5 hours     |
-| 2/4     | Week 4 Exercise & Indie Project: Hibernate Updated                                                                       | @ 2-3 hours |
-|         | Indie Project: Journal, JournalDao, JournalDaoTest - Completed                                                           | @ 4 hours   |
-|         | Indie Project: Update WeeklyReflection.md & ProjectPlan.md                                                               | @ 30 mins   |
-| 2/5     | Week 5 Class                                                                                                             | 2-3 hours   |
-|         | Week 5 Exercise Completion: Journal Table upgrade using user_id & JournalDao Upgrade using Entity                        | 3 hours     |
-| 2/11    | Week 6 Class & Exercise - Have been Working on it more than 6 hours now.....                                             | 10 hours    |
-| 2/15    | Indie Project: Deploying it through the AWS, Working on the Dao, and Made some pages working done through DAO            | 4 hours     |
-| 2/19    | Week 7 Class & Exercise - Cognito Worked pretty well                                                                     | 1-2 hours   |
-| 2/20-25 | Week 7 Cognito - Beanstalk Connection : Did not work well                                                                | 10 hours    |
-| 2/26    | Week 7 Get Cognito - Beanstalk work again                                                                                | 6 hours     |
-| 2/20-26 | Week 8 - Weather API - Activities & Exercise - Completed                                                                 | 3 hours     |
-| 3/6     | Week 6 - Peer Review                                                                                                     | 1 hour      |
-| 3/11    | Week 9 - Exercise                                                                                                        | 2 hours     |
-|         | Indie Project: Updating ERD, Project Plans and Feedback from Checkpoint 2                                                | 2 hours     |
-| 4/9     | Indie Project: Updated DB with adding location table, and set all entities, Daos, tests. Made all working                | 4.5 hours   |
-| 4/10    | Indie Project: Cognito information is added correctly Check                                                              | 1 hour      |
-|         | Indie Project: Homepage (App) Design (Skeleton) / Session / Get Journals by Users                                        | 3 hours     |
-|         | Indie Project: Add Journal Parts Done - Need revision later for Colors and Date                                          | 1 hour      |
-|         | Indie Project: Updated Color. and DisplayJournals.jsp in the color associated with the weather"                          | 1 hour      |
-| 4/12    | Indie Project: Edit Journal added and added date checking function in js. Need to check redirecting after cancel button  | 2 hours     |
-| 4/19    | Indie Project: 1) Head, Header Design / View by City / View by Weather Worked                                            | 3 hours     |
-|         | Indie Project: 2) Showing all results by users worked                                                                    |             |
-|         | Indie Project: Next: Redirecting after 'Cancel' button should be fixed                                                   |             |
-| 4/26    | Indie Project: Cancel Button is fixed to go back to the previous page wherever it came from using JavaScript             | 1 hour      |
-|         | Indie Project: JournalDaoTest edited by adding some tests for mor functions /  Admin - view by User controller/jsp added | 2 hour      |
-|         | Indie Project: Next: View By City - Admin - Like Search should work. It is not working now                               |             |
-| 4/27    | Indie Project: Admin - View By City made it work                                                                         | 10 mins     |
-|         | Indie Project: Test Files updated, Presentation Videos Taken                                                             | 8 hours     |
-|         | Indie Project: Next: 1) JavaDoc 2) Database Design 3) Project Plan 4) Screen Design - Need to Update                     |             |
+| Date    | Task                                                                                                                                   | Hours       |
+|---------|----------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| 1/8     | Week 1 Class & Exercise Completion                                                                                                     | 5 hours     |
+| 1/9     | Challenge 1 & 2                                                                                                                        | 2 hours     |
+| 1/9     | Challenge 1 & 2                                                                                                                        | 2 hours     |
+| 1/24    | Week 2 Exericse & Challenge 3                                                                                                          | 5-6 hours   |
+| 1/25    | Week 3 Exericse                                                                                                                        | 5-6 hours   |
+| 1/27    | Devised an idea & Created a repo for Indie Project                                                                                     | @ 1 hour    |
+| 1/28    | Created and Updated 1) README.md 2) UserStories.md 3) ProjectPlan.md 4) Screens.md 5) WeeklyReflection.md                              | 4-5 hours   |
+| 1/30    | Week 4 Hibernate Class                                                                                                                 | 5 hours     |
+| 2/4     | Week 4 Exercise & Indie Project: Hibernate Updated                                                                                     | @ 2-3 hours |
+|         | Indie Project: Journal, JournalDao, JournalDaoTest - Completed                                                                         | @ 4 hours   |
+|         | Indie Project: Update WeeklyReflection.md & ProjectPlan.md                                                                             | @ 30 mins   |
+| 2/5     | Week 5 Class                                                                                                                           | 2-3 hours   |
+|         | Week 5 Exercise Completion: Journal Table upgrade using user_id & JournalDao Upgrade using Entity                                      | 3 hours     |
+| 2/11    | Week 6 Class & Exercise - Have been Working on it more than 6 hours now.....                                                           | 10 hours    |
+| 2/15    | Indie Project: Deploying it through the AWS, Working on the Dao, and Made some pages working done through DAO                          | 4 hours     |
+| 2/19    | Week 7 Class & Exercise - Cognito Worked pretty well                                                                                   | 1-2 hours   |
+| 2/20-25 | Week 7 Cognito - Beanstalk Connection : Did not work well                                                                              | 10 hours    |
+| 2/26    | Week 7 Get Cognito - Beanstalk work again                                                                                              | 6 hours     |
+| 2/20-26 | Week 8 - Weather API - Activities & Exercise - Completed                                                                               | 3 hours     |
+| 3/6     | Week 6 - Peer Review                                                                                                                   | 1 hour      |
+| 3/11    | Week 9 - Exercise                                                                                                                      | 2 hours     |
+|         | Indie Project: Updating ERD, Project Plans and Feedback from Checkpoint 2                                                              | 2 hours     |
+| 4/9     | Indie Project: Updated DB with adding location table, and set all entities, Daos, tests. Made all working                              | 4.5 hours   |
+| 4/10    | Indie Project: Cognito information is added correctly Check                                                                            | 1 hour      |
+|         | Indie Project: Homepage (App) Design (Skeleton) / Session / Get Journals by Users                                                      | 3 hours     |
+|         | Indie Project: Add Journal Parts Done - Need revision later for Colors and Date                                                        | 1 hour      |
+|         | Indie Project: Updated Color. and DisplayJournals.jsp in the color associated with the weather"                                        | 1 hour      |
+| 4/12    | Indie Project: Edit Journal added and added date checking function in js. Need to check redirecting after cancel button                | 2 hours     |
+| 4/19    | Indie Project: 1) Head, Header Design / View by City / View by Weather Worked                                                          | 3 hours     |
+|         | Indie Project: 2) Showing all results by users worked                                                                                  |             |
+|         | Indie Project: Next: Redirecting after 'Cancel' button should be fixed                                                                 |             |
+| 4/26    | Indie Project: Cancel Button is fixed to go back to the previous page wherever it came from using JavaScript                           | 1 hour      |
+|         | Indie Project: JournalDaoTest edited by adding some tests for mor functions /  Admin - view by User controller/jsp added               | 2 hour      |
+|         | Indie Project: Next: View By City - Admin - Like Search should work. It is not working now                                             |             |
+| 4/27    | Indie Project: Admin - View By City made it work                                                                                       | 10 mins     |
+|         | Indie Project: Test Files updated, Presentation Videos Taken                                                                           | 8 hours     |
+|         | Indie Project: Next: 1) JavaDoc 2) Database Design 3) Project Plan 4) Screen Design - Need to Update                                   |             |
+| 4/30    | Indie Project: Update Readme.md with Project Technologies/Techniques and Project Plan / Made GenericDao Working / All Dao tests passed | 2 hours     |
+| 4/30    | Indie Project: Code Coverage Test Result was added / Error.jsp added / GitIgnore performed                                             | 1 hour      |
+
 
 
 
