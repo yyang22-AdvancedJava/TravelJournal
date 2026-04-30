@@ -19,7 +19,7 @@ import java.io.IOException;
         urlPatterns = {"/searchUser"}
 )
 
-public class SearchUser extends HttpServlet {
+public class NotUsed_SearchUser extends HttpServlet {
     /**
      * Handles GET requests for user searching and listing.
      * Checks the "submit" parameter to determine if the user is performing a specific

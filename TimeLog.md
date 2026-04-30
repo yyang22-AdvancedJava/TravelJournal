@@ -42,6 +42,7 @@
 | 4/30    | Indie Project: Update Readme.md with Project Technologies/Techniques and Project Plan / Made GenericDao Working / All Dao tests passed | 2 hours     |
 |         | Indie Project: Code Coverage Test Result was added / Error.jsp added / GitIgnore performed                                             | 1 hour      |
 |         | Indie Project: JavaDoc Added / Database Design Updated                                                                                 | 2 hours     |
+|         | Indie Project: Screen Design Updated                                                                                                   | 1 hour      |
 
 
 

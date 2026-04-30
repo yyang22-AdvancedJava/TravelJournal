@@ -100,13 +100,13 @@ Checkpoint 3 Due: AWS Deployment, JSP Data Display, Authentication
 - [x] Final Presentation
 - [x] Create video
 - [x] Add video link to readme.md
-- [ ] Finalize all documentation 
+- [x] Finalize all documentation 
 - [x] 1) JavaDoc
 - [x] 2) Database Design
 - [x] 3) Project Plan
-- [ ] 4) Screen Design
-- [ ] Code quality check
-- [ ] Weekly journal entry
+- [x] 4) Screen Design
+- [x] Code quality check
+- [x] Weekly journal entry
 
 <br>
 

@@ -19,7 +19,7 @@ import java.io.IOException;
  * @author pwaite
  */
 @WebServlet("/addUser")
-public class AddUser extends HttpServlet {
+public class NotUsed_AddUser extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     /**
