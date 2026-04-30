@@ -45,7 +45,9 @@ The problem is that travel memories are more than just images; they are tied to 
 - [Database Design](https://github.com/yyang22-AdvancedJava/TravelJournal/blob/main/DesignDocuments%20/databaseDesign.md)
 
 
-## [Project Plan](https://github.com/yyang22-AdvancedJava/TravelJournal/blob/main/ProjectPlan.md)
+### [Project Plan](https://github.com/yyang22-AdvancedJava/TravelJournal/blob/main/ProjectPlan.md)
 
-## [Time Log](https://github.com/yyang22-AdvancedJava/TravelJournal/blob/main/TimeLog.md)
+### [Time Log](https://github.com/yyang22-AdvancedJava/TravelJournal/blob/main/TimeLog.md)
+
+### [Final Presentation](https://www.youtube.com/playlist?list=PLwvvUq71U57IYGcoEcJ24d5NyuCfolVUJ)
 
