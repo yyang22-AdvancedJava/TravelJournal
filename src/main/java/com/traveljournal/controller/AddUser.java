@@ -14,13 +14,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 사용자 추가를 담당하는 서블릿.
- * Cognito 연동 구조에 맞게 수정되었습니다.
+ * Controller servlet responsible for adding new users to the system.
+ *
+ * @author pwaite
  */
 @WebServlet("/addUser")
 public class AddUser extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Handles POST requests to register a new user.
+     *
+     * @param req  the {@link HttpServletRequest} containing user registration parameters
+     * @param resp the {@link HttpServletResponse} used to forward the user to a result page
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an input or output error is detected
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

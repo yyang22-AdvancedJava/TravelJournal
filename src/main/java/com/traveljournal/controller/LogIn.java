@@ -12,6 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Controller servlet that begins the authentication process using AWS Cognito.
+ * It serves as the entry point for users to log in, redirecting them to the
+ * AWS-hosted login page with the necessary OAuth2 parameters.
+ *
+ * @author pwaite
+ */
 @WebServlet(
         urlPatterns = {"/logIn"}
 )
@@ -36,8 +43,6 @@ public class LogIn extends HttpServlet implements PropertiesLoader {
      * Read in the cognito props file and get the client id and required urls
      * for authenticating a user.
      */
-    // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
-    // 4 to do this work a single time and put the properties in the application scope
     private void loadProperties() {
         try {
             properties = loadProperties("/cognito.properties");
@@ -53,6 +58,7 @@ public class LogIn extends HttpServlet implements PropertiesLoader {
 
     /**
      * Route to the aws-hosted cognito login page.
+     *
      * @param req servlet request
      * @param resp servlet response
      * @throws ServletException

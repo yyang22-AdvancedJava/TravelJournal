@@ -12,9 +12,29 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controller servlet responsible for searching travel journals by city name.
+ *
+ * @author yyang22
+ */
 @WebServlet("/searchByCity")
 public class ViewByCity extends HttpServlet {
 
+    /**
+     * Handles GET requests to search for journals by a specific city.
+     * The method validates the user's session, retrieves the city parameter from the request,
+     * and performs a filtered search.
+     *
+     * Logic flow:
+     * 1. Check for a valid user session; redirect to login if missing.
+     * 2. If the user is an admin, retrieve all journals matching the city name.
+     * 3. If the user is a standard user, retrieve only their personal journals matching the city name.
+     *
+     * @param request  the {@link HttpServletRequest} containing the city search parameter
+     * @param response the {@link HttpServletResponse}
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an input or output error is detected during forwarding or redirection
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

@@ -10,11 +10,13 @@ import java.util.List;
 
 /**
  * Class to test Your second RESTful Web Service in IntelliJ
+ *
+ * @author yyang22
  */
 @Path("/journals")
 public class JournalService {
 
-    // persistence 패키지에 있는 DAO 활용
+    // Data Access Object used to interact with the journal table in the database.
     JournalDao dao = new JournalDao();
 
     /**
@@ -78,7 +80,12 @@ public class JournalService {
     }
     */
 
-    // JSON
+    /**
+     * Retrieves all travel journal entries from the database and returns them as a JSON array.
+     * Endpoint: GET /services/journals
+     *
+     * @return a {@link Response} object containing the list of journals and an HTTP 200 status
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON) // 1. 출력을 JSON으로 설정
     public Response getAllEntries() {

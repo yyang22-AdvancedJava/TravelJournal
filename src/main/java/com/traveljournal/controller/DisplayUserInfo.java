@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * A servlet to display a user.info
+ * Controller servlet responsible for retrieving and displaying detailed information
+ * for a specific user.
+ *
  * @author yyang22
  */
 @WebServlet("/displayUserInfo")
@@ -19,6 +21,15 @@ public class DisplayUserInfo extends HttpServlet {
 
     private static final Logger log = LogManager.getLogger(DisplayUserInfo.class);
 
+    /**
+     * Handles GET requests to display specific user information.     *
+     *
+     * @param req  the {@link HttpServletRequest} containing the "id" parameter of the user
+     * @param resp the {@link HttpServletResponse}
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an input or output error is detected during forwarding
+     * @throws NumberFormatException if the provided ID parameter is not a valid integer
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

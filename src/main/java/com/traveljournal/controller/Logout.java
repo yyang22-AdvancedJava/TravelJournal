@@ -8,9 +8,24 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Controller servlet responsible for terminating the user session.
+ * It clears all session-bound data (such as user profiles and authentication status)
+ * and redirects the user to the landing page.
+ *
+ * @author pwaite
+ */
 @WebServlet(urlPatterns = {"/logout"}) // header.jsp의 href="logout"과 일치해야 함
 public class Logout extends HttpServlet {
 
+    /**
+     * Handles GET requests to log out the current user.
+     *
+     * @param req  the {@link HttpServletRequest} used to retrieve the current session
+     * @param resp the {@link HttpServletResponse} used to redirect to the home page
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an input or output error is detected during redirection
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 현재 세션을 가져옵니다. (없으면 새로 만들지 않도록 false 설정)

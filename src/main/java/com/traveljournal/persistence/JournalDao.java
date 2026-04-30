@@ -10,14 +10,27 @@ import org.hibernate.Transaction;
 import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 import java.util.List;
 
+/**
+ * Data Access Object for Journal entities.
+ *
+ * @author yyang22
+ */
 public class JournalDao extends GenericDao<Journal> {
 
+    /**
+     * Instantiates a new Journal DAO.
+     */
     public JournalDao() {
         super(Journal.class);
     }
 
     /**
-     * [특수 로직] 삭제 시 양방향 관계 정리 로직 오버라이드
+     * Deletes a journal entry while maintaining bidirectional integrity.
+     * This override ensures the journal is manually removed from the parent
+     * User's collection before deletion to prevent "re-saved by cascade"
+     * errors or Hibernate synchronization issues.
+     *
+     * @param journal the journal entity to delete
      */
     @Override
     public void delete(Journal journal) {
@@ -41,6 +54,13 @@ public class JournalDao extends GenericDao<Journal> {
         }
     }
 
+    /**
+     * Retrieves all journal entries that match a specific location name.
+     * Performs an inner join with the Location entity.
+     *
+     * @param locationName the name (or partial name) of the location
+     * @return a list of matching journals
+     */
     public List<Journal> getByLocationName(String locationName) {
         Session session = sessionFactory.openSession();
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
@@ -55,6 +75,13 @@ public class JournalDao extends GenericDao<Journal> {
         return journals;
     }
 
+    /**
+     * Retrieves journals for a specific user filtered by location name.
+     *
+     * @param locationName the name of the location
+     * @param userId       the ID of the owner user
+     * @return a list of matching journals belonging to the user
+     */
     public List<Journal> getByLocationNameAndUser(String locationName, int userId) {
         Session session = sessionFactory.openSession();
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
@@ -74,6 +101,13 @@ public class JournalDao extends GenericDao<Journal> {
         return journals;
     }
 
+    /**
+     * Retrieves journals for a specific user filtered by weather conditions.
+     *
+     * @param weather the weather description to search for
+     * @param userId  the ID of the owner user
+     * @return a list of journals matching the weather criteria
+     */
     public List<Journal> getByWeatherAndUser(String weather, int userId) {
         Session session = sessionFactory.openSession();
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
@@ -92,6 +126,12 @@ public class JournalDao extends GenericDao<Journal> {
         return journals;
     }
 
+    /**
+     * Retrieves all journals associated with a specific username.
+     *
+     * @param userName the username to filter by
+     * @return a list of journals authored by the specified user
+     */
     public List<Journal> getJournalsByUserName(String userName) {
         Session session = sessionFactory.openSession();
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();

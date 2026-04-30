@@ -5,9 +5,21 @@ import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The main configuration class for the Travel Journal RESTful web services.
+ *
+ * @author yyang22
+ */
 @ApplicationPath("/services")
 public class JournalApplication extends Application {
 
+    /**
+     * Returns a set of classes that contribute to the configuration of the
+     * web application. This method manually registers the REST resource
+     * classes and essential Jersey features like Jackson for JSON support.
+     *
+     * @return a {@link Set} of registered service and feature classes
+     */
     @Override
     public Set<Class<?>> getClasses() {
         HashSet<Class<?>> h = new HashSet<>();

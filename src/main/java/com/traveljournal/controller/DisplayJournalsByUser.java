@@ -12,10 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controller servlet responsible for displaying journals based on the user's identity.
+ * It filters the journal list to show either the current user's personal entries
+ * or the complete list of journals if the requester has administrative privileges.
+ *
+ * @author yyang22
+ */
 @WebServlet(
         urlPatterns = {"/displayJournalsByUser"}
 )
 public class DisplayJournalsByUser extends HttpServlet {
+    /**
+     * Handles GET requests to retrieve and display journal entries.     *
+     *
+     * @param req  the {@link HttpServletRequest} containing session attributes for user and role
+     * @param resp the {@link HttpServletResponse} used to redirect unauthenticated users or forward to the view
+     * @throws ServletException if a servlet-specific error occurs during processing
+     * @throws IOException      if an I/O error occurs during request forwarding or redirection
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

@@ -49,13 +49,15 @@ import java.util.stream.Collectors;
 import com.traveljournal.entity.User; // 유저 엔티티 임포트
 
 
+/**
+ * Authentication controller that manages the OAuth2 flow with AWS Cognito.
+ */
 @WebServlet(
         urlPatterns = {"/auth"}
 )
 /**
  * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
  */
-
 public class Auth extends HttpServlet implements PropertiesLoader {
     Properties properties;
     String CLIENT_ID;
@@ -69,6 +71,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Initializes the servlet by loading Cognito configuration properties
+     * and fetching the JSON Web Key Set (JWKS) for token verification.
+     *
+     * @throws ServletException if initialization fails
+     */
     @Override
     public void init() throws ServletException {
         super.init();

@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * A simple servlet to welcome the user.
- * @author pwaite
+ * Controller servlet responsible for retrieving and displaying all travel journals.
+ *
+ * @author yyang22
  */
-
 @WebServlet(
         urlPatterns = {"/displayAllJournals"}
 )

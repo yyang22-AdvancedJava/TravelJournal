@@ -20,12 +20,27 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Properties;
-
+/**
+ * Controller servlet for handling the creation of new travel journals.
+ * Provides functionality to load configuration for weather APIs and
+ * persist journal entries associated with specific locations and users.
+ *
+ * @author yyang22
+ */
 @WebServlet(urlPatterns = {"/addJournal"})
 public class AddJournal extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Handles GET requests to display the journal entry form.
+     * Loads weather API properties from the configuration file and sets them as request attributes.
+     *
+     * @param req  the {@link HttpServletRequest} object containing the request the client made of the servlet
+     * @param resp the {@link HttpServletResponse} object containing the response the servlet returns to the client
+     * @throws ServletException if the request for the GET could not be handled
+     * @throws IOException      if an input or output error is detected when the servlet handles the GET request
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Properties properties = new Properties();
@@ -42,6 +57,14 @@ public class AddJournal extends HttpServlet {
         req.getRequestDispatcher("/addJournal.jsp").forward(req, resp);
     }
 
+    /**
+     * Handles POST requests to save a new journal entry.
+     *
+     * @param req  the {@link HttpServletRequest} object containing the journal data parameters
+     * @param resp the {@link HttpServletResponse} object containing the response the servlet returns to the client
+     * @throws ServletException if the request for the POST could not be handled
+     * @throws IOException      if an input or output error is detected when the servlet handles the POST request
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();

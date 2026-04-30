@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * Data Access Object for fetching weather information from WeatherAPI.
+ *
  * @author yyang22
  */
 public class WeatherDao implements PropertiesLoader {
@@ -52,6 +53,7 @@ public class WeatherDao implements PropertiesLoader {
 
     /**
      * Retrieves the current weather for a specific city from API.
+     *
      * @param city the city to get the weather
      * @return weather the weather object containing API response data
      */
@@ -69,7 +71,6 @@ public class WeatherDao implements PropertiesLoader {
         try {
             weather = mapper.readValue(response, Weather.class);
         } catch (JsonProcessingException e) {
-            //TODO set up loggin and write this to the log
             throw new RuntimeException(e);
         }
         return weather;

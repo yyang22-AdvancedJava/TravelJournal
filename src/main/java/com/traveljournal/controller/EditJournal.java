@@ -17,10 +17,25 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Controller servlet that handles the editing of existing travel journal entries.
+ *
+ * @author yyang22
+ */
 @WebServlet("/editJournal")
 public class EditJournal extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Handles GET requests to load the journal editing form.
+     * Fetches the specific journal entry by its ID and provides it to the JSP
+     * to populate the form fields.
+     *
+     * @param req  the {@link HttpServletRequest} containing the unique ID of the journal to edit
+     * @param resp the {@link HttpServletResponse}
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an I/O error occurs during request forwarding
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 수정할 ID 가져오기
@@ -38,6 +53,16 @@ public class EditJournal extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    /**
+     * Handles POST requests to update an existing journal entry.
+     * Collects updated parameters from the form, modifies the journal through a database update.
+     * It then redirects the user back to the appropriate journal list based on their administrative role.
+     *
+     * @param req  the {@link HttpServletRequest} containing the updated journal form data
+     * @param resp the {@link HttpServletResponse} used for redirection after the update
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an input or output error is detected
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();

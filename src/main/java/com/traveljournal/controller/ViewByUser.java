@@ -11,8 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controller servlet responsible for retrieving and displaying travel journals
+ * associated with a specific username. This is typically used by administrators
+ * to filter entries by a specific user or for public profile viewing.
+ *
+ * @author yyang22
+ */
 @WebServlet("/viewByUser")
 public class ViewByUser extends HttpServlet {
+
+    /**
+     * Handles GET requests to search for journals by a specific username.
+     *
+     * @param req  the {@link HttpServletRequest} containing the "userName" search parameter
+     * @param resp the {@link HttpServletResponse}
+     * @throws ServletException if a servlet-specific error occurs during processing
+     * @throws IOException      if an input or output error is detected during request forwarding
+     */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("userName");
 

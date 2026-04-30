@@ -12,9 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controller servlet responsible for filtering travel journals by weather conditions.
+ * It enforces access control by ensuring users only see their own journals,
+ * while allowing administrators to search through all entries in the system.
+ *
+ * @author YourName
+ */
 @WebServlet("/searchByWeather")
 public class ViewByWeather extends HttpServlet {
 
+    /**
+     * Handles GET requests to search for journals based on a weather keyword.
+     *
+     * @param request  the {@link HttpServletRequest} containing the "weather" search term
+     * @param response the {@link HttpServletResponse}
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an input or output error is detected during forwarding or redirection
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

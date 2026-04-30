@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * A simple servlet to welcome the user.
- * @author pwaite
+ * Controller servlet responsible for deleting an existing travel journal.
+ *
+ * @author yyang22
  */
-
 @WebServlet(
         urlPatterns = {"/deleteJournal"}
 )
@@ -26,6 +26,17 @@ public class DeleteJournal extends HttpServlet {
 
     private static final Logger log = LogManager.getLogger(DisplayUserInfo.class);
 
+    /**
+     * Handles POST requests to delete a specific journal entry.
+     * Extracts the journal ID from the request, performs the deletion,
+     * and redirects the user back to the appropriate list view depending
+     * on whether they are an administrator or a standard user.
+     *
+     * @param req  the {@link HttpServletRequest} containing the journal ID to delete
+     * @param resp the {@link HttpServletResponse} used for redirection
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an input or output error is detected
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
