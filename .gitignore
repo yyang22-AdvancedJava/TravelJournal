@@ -38,6 +38,7 @@ build/
 ### Mac OS ###
 .DS_Store
 
-## TODO Reminder to git ignore senstive files and log files
+## To git ignore senstive files and log files
 src/main/resources/database.properties
 src/main/resources/weatherapi.properties
+src/main/resources/cognito.properties

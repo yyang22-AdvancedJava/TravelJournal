@@ -13,5 +13,24 @@
     <welcome-file>displayAllJournals</welcome-file>
   </welcome-file-list>
   -->
+
+  <!-- Error page Added -->
+  <!-- 404 에러: 사용자가 잘못된 주소로 들어왔을 때 -->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error.jsp</location>
+  </error-page>
+
+  <!-- 500 에러: 자바 코드 실행 중 오류가 났을 때 -->
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error.jsp</location>
+  </error-page>
+
+  <!-- 모든 종류의 예외(Exception)를 한 번에 처리하고 싶을 때 -->
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/error.jsp</location>
+  </error-page>
 </web-app>
 
