@@ -130,12 +130,15 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                     logger.info("New user. Registering: " + userEmail);
                     currentUser = new User();
                     currentUser.setUserName(userEmail);
-                    // 이 부분을 추가하세요! (User 엔티티에 해당 필드가 있다고 가정)
-                    currentUser.setCognitoId(cognitoSub); // Cognito에서 받은 고유 ID 저장
+                    currentUser.setCognitoId(cognitoSub);
 
-                    // DAO를 통해 DB에 insert (이 단계에서 실제 데이터베이스에 행이 추가됨)
-                    int id = userDao.insert(currentUser);
-                    currentUser.setId(id);
+                    // 1. 리턴값을 받지 않고 그냥 호출합니다.
+                    userDao.insert(currentUser);
+
+                    // 2. 이미 currentUser 객체 안에 DB에서 생성된 ID가 들어가 있습니다.
+                    // 따라서 currentUser.setId(id)를 명시적으로 호출할 필요가 없습니다.
+                    logger.info("New user registered with ID: " + currentUser.getId());
+
                 } else {
                     // 이미 있는 사용자면 DB에서 가져옴
                     currentUser = users.get(0);
