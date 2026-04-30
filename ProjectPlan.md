@@ -102,7 +102,7 @@ Checkpoint 3 Due: AWS Deployment, JSP Data Display, Authentication
 - [x] Add video link to readme.md
 - [ ] Finalize all documentation 
 - [x] 1) JavaDoc
-- [ ] 2) Database Design
+- [x] 2) Database Design
 - [x] 3) Project Plan
 - [ ] 4) Screen Design
 - [ ] Code quality check

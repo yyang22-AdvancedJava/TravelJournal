@@ -40,7 +40,8 @@
 |         | Indie Project: Test Files updated, Presentation Videos Taken                                                                           | 8 hours     |
 |         | Indie Project: Next: 1) JavaDoc 2) Database Design 3) Project Plan 4) Screen Design - Need to Update                                   |             |
 | 4/30    | Indie Project: Update Readme.md with Project Technologies/Techniques and Project Plan / Made GenericDao Working / All Dao tests passed | 2 hours     |
-| 4/30    | Indie Project: Code Coverage Test Result was added / Error.jsp added / GitIgnore performed                                             | 1 hour      |
+|         | Indie Project: Code Coverage Test Result was added / Error.jsp added / GitIgnore performed                                             | 1 hour      |
+|         | Indie Project: JavaDoc Added / Database Design Updated                                                                                 | 2 hours     |
 
 
 
