@@ -43,6 +43,7 @@
 |         | Indie Project: Code Coverage Test Result was added / Error.jsp added / GitIgnore performed                                             | 1 hour      |
 |         | Indie Project: JavaDoc Added / Database Design Updated                                                                                 | 2 hours     |
 |         | Indie Project: Screen Design Updated                                                                                                   | 1 hour      |
+| 5/3     | Indie Project: Edited Redirection page after editing journal with Referer function                                                     | 1 hour      |
 
 
 
