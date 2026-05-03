@@ -58,7 +58,9 @@
               </div>
 
               <div class="d-flex align-items-center gap-3">
-                <a href="editJournal?id=${journal.id}" class="text-primary" title="Edit"><i class="bi bi-pencil-square fs-3"></i></a>
+                <a href="editJournal?id=${journal.id}" class="text-primary" title="Edit">
+                  <i class="bi bi-pencil-square fs-3"></i>
+                </a>
                 <form action="deleteJournal" method="post" style="display:inline; margin:0;">
                   <input type="hidden" name="id" value="${journal.id}">
                   <button type="submit" class="btn btn-link text-danger p-0" onclick="return confirm('Are you sure?');">

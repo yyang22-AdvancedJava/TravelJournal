@@ -38,19 +38,30 @@ public class EditJournal extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 1. 수정할 ID 가져오기
-        int id = Integer.parseInt(req.getParameter("id"));
+        String referer = req.getHeader("Referer");
+        // 주소가 있고, 자기 자신(edit)이 아닐 때만 세션에 '복귀 주소'로 저장
+        if (referer != null && !referer.contains("edit")) {
+            req.getSession().setAttribute("returnUrl", referer);
+        }
 
-        // 2. 전용 Dao를 사용하여 데이터 조회
-        JournalDao journalDao = new JournalDao();
-        Journal journal = journalDao.getById(id); // 메서드명은 본인의 Dao에 맞춰 수정하세요
+        try {
+            // 2. 수정할 ID 가져오기
+            int id = Integer.parseInt(req.getParameter("id"));
 
-        // 3. JSP에 데이터 전달
-        req.setAttribute("journal", journal);
-        req.setAttribute("activePage", "main"); // 헤더 강조용
+            // 3. 데이터 조회
+            JournalDao journalDao = new JournalDao();
+            Journal journal = journalDao.getById(id);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/editJournal.jsp");
-        dispatcher.forward(req, resp);
+            // 4. JSP에 데이터 전달
+            req.setAttribute("journal", journal);
+            req.setAttribute("activePage", "main");
+
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/editJournal.jsp");
+            dispatcher.forward(req, resp);
+        } catch (Exception e) {
+            logger.error("Error loading edit form", e);
+            resp.sendRedirect("error.jsp");
+        }
     }
 
     /**
@@ -93,6 +104,21 @@ public class EditJournal extends HttpServlet {
         try {
             journalDao.update(journal); // 본인의 업데이트 메서드 호출
             logger.info("Journal Edit Success: ID " + id);
+
+            // 세션에 저장된 주소가 있는지 확인
+            String returnUrl = (String) session.getAttribute("returnUrl");
+
+            // 3. 리다이렉트
+            if (returnUrl != null && !returnUrl.isEmpty()) {
+                // 주소를 썼으니 세션에서 지워줍니다.
+                session.removeAttribute("returnUrl");
+                resp.sendRedirect(returnUrl);
+            } else {
+                // 주소가 없으면 권한별 기본 목록으로 (기존에 만드신 메서드)
+                redirectToList(req, resp, session);
+            }
+            return; // 리다이렉트 후 코드 실행 중단 (매우 중요!)
+
         } catch (Exception e) {
             logger.error("There was an error while updating a journal", e);
         }
@@ -100,7 +126,20 @@ public class EditJournal extends HttpServlet {
         // 5. 목록으로 돌아가기
         // resp.sendRedirect("displayJournalsByUser");
         // 페이지 이동
+        /*
+        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+        if (isAdmin != null && isAdmin) {
+            resp.sendRedirect("displayAllJournals");
+        } else {
+            resp.sendRedirect("displayJournalsByUser");
+        }
+        */
+    }
 
+    /**
+     * 기본 목록 페이지로 리다이렉트하는 헬퍼 메서드
+     */
+    private void redirectToList(HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws IOException {
         Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
         if (isAdmin != null && isAdmin) {
             resp.sendRedirect("displayAllJournals");
@@ -108,4 +147,5 @@ public class EditJournal extends HttpServlet {
             resp.sendRedirect("displayJournalsByUser");
         }
     }
+
 }
